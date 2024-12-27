@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', [DashboardController::class, "index"]);
+Route::get('/', [DashboardController::class, 'index']);
 
-Route::get('/profile', [ProfileController::class, "index"]);
+Route::get('/terms', function () {
+    return view('terms');
+});
