@@ -9,6 +9,13 @@ class IdeaController extends Controller
 {
     public function store(){
 
+        // request()->validate([
+        //     'idea' => 'required|min_digits:5'
+        // ]);
+        request()->validate([
+            'idea' => 'required|min:3|max:240'
+        ]);
+
         // $idea = new Idea();
         // $idea->content = "test";
         // $idea->likes = 0;
