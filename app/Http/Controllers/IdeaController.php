@@ -18,7 +18,6 @@ class IdeaController extends Controller
             'content' => request('idea', null)
         ]);
 
-        return to_route('dashboard');
-        // return redirect()->route('dashboard');
+        return to_route('dashboard')->with('success','Idea was created successfully.');
     }
 }
