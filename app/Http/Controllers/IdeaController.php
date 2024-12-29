@@ -7,6 +7,9 @@ use App\Models\Idea;
 
 class IdeaController extends Controller
 {
+    public function show(Idea $idea){
+        return view("ideas.show", compact("idea"));
+    }
     public function store(){
         request()->validate([
             'idea' => 'required|min:3|max:240'
