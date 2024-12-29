@@ -12,7 +12,7 @@
             <form action="{{ route('ideas.destroy', $idea->id) }}" method="post">
                 @csrf
                 @method('delete')
-                <button><a href="{{ route('ideas.show', $idea->id) }}" style="text-decoration: none">Show</a></button>
+                <button><a href="{{ route('ideas.show', $idea->id) }}" style="text-decoration: none">View</a></button>
                 <button class="btn btn-danger btn-sm">X</button>
             </form>
         </div>
