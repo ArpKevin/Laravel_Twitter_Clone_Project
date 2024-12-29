@@ -8,10 +8,6 @@ use App\Models\Idea;
 class IdeaController extends Controller
 {
     public function store(){
-
-        // request()->validate([
-        //     'idea' => 'required|min_digits:5'
-        // ]);
         request()->validate([
             'idea' => 'required|min:3|max:240'
         ]);
@@ -26,5 +22,10 @@ class IdeaController extends Controller
         ]);
 
         return to_route('dashboard')->with('success','Idea was created successfully.');
+    }
+
+    public function destroy($id){
+        Idea::findOrFail($id)->delete();
+        return to_route('dashboard')->with('success','Idea was deleted successfully.');
     }
 }
