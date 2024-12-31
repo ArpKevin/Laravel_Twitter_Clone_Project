@@ -24,8 +24,8 @@
             @csrf
             @method('put')
             <div class="mb-3">
-                <textarea name="content" class="form-control" id="content" rows="3">{{ $idea->content }}</textarea>
-                @error('content')
+                <textarea name="idea-content" class="form-control" id="idea_content" rows="3">{{ $idea->content }}</textarea>
+                @error('idea_content')
                     <span class="d-block fs-6 text-danger mt-2">{{$message}}</span>
                 @enderror
             </div>
