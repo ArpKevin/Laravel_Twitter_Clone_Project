@@ -13,7 +13,7 @@ class IdeaController extends Controller
         ]);
 
         Idea::create([
-            'idea_content' => request('idea_content', null)
+            'content' => request('idea_content', null)
         ]);
 
         return to_route('dashboard')->with('success','Idea was created successfully.');
@@ -33,7 +33,7 @@ class IdeaController extends Controller
         ]);
 
         $idea->update([
-            'idea_content'=> request('idea_content', null)
+            'content'=> request('idea_content', null)
         ]);
 
         return to_route('ideas.show', $idea->id)->with('success','Idea was updated successfully.');
