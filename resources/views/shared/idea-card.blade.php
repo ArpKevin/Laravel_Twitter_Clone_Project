@@ -9,12 +9,14 @@
                         </a></h5>
                 </div>
             </div>
+
+            {{-- potentially to be refactored --}}
             <form action="{{ route('ideas.destroy', $idea->id) }}" method="post">
                 @csrf
                 @method('delete')
-                <a class="mx-2" href="{{ route('ideas.edit', $idea->id) }}" style="text-decoration: none">Edit</a>
+                @if(auth()->id() === $idea->user_id) <a class="mx-2" href="{{ route('ideas.edit', $idea->id) }}" style="text-decoration: none">Edit</a> @endif
                 <a href="{{ route('ideas.show', $idea->id) }}" style="text-decoration: none">View</a>
-                <button class="btn btn-danger btn-sm">X</button>
+                @if(auth()->id() === $idea->user_id) <button class="btn btn-danger btn-sm">X</button> @endif
             </form>
         </div>
     </div>
