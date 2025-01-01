@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,8 @@ class IdeaFactory extends Factory
     {
         return [
             'content' => fake()->text(200),
-            'likes' => fake()->numberBetween(1,999)
+            'likes' => fake()->numberBetween(1,999),
+            'user_id' => User::inRandomOrder()->first()->id
         ];
     }
 }

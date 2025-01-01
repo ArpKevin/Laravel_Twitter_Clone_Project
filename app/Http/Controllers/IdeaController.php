@@ -13,7 +13,8 @@ class IdeaController extends Controller
         ]);
 
         Idea::create([
-            'content' => request('idea_content', null)
+            'content' => request('idea_content', null),
+            "user_id"=>auth()->id()
         ]);
 
         return to_route('dashboard')->with('success','Idea was created successfully.');

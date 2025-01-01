@@ -9,11 +9,12 @@ class CommentController extends Controller
 {
     public function store(Idea $idea){
         request()->validate([
-            "comment_content"=> "required"
+            "comment_content"=> "required",
         ]);
 
         $idea->comments()->create([
             "idea_id"=> $idea->id,
+            "user_id"=>auth()->id(),
             "content"=> request()->get("comment_content")
         ]);
 
