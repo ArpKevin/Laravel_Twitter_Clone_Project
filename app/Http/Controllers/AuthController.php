@@ -24,6 +24,33 @@ class AuthController extends Controller
             'password'=> Hash::make($validated['password']),
         ]);
 
-        return redirect()->route('dashboard')->with('success','Account created successfully');
+        return redirect()->route('login')->with('success','Account created successfully');
+    }
+
+    public function login(){
+        return view('auth.login');
+    }
+
+    public function authenticate(){
+        $validated = request()->validate([
+            'email'=> 'required|email',
+            'password'=> 'required|min:8'
+        ]);
+
+        if(auth()->attempt($validated)){
+            request()->session()->regenerate();
+            return redirect()->route('dashboard')->with('success','Logged in as ' . auth()->user()->name);
+        }
+
+        return redirect()->route('login')->withErrors([
+            'email'=> 'No matching email and password combination found.'
+        ]);
+    }
+    public function logout(){
+        auth()->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerate();
+
+        return redirect()->route('dashboard')->with('success','Successfully logged out');
     }
 }
