@@ -27,16 +27,22 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::prefix('ideas/')
     ->as('ideas.')
     ->group(function () {
-        Route::get('/{idea}', [IdeaController::class, 'show'])->name('show');
-        Route::get('/{idea}/edit', [IdeaController::class, 'edit'])->name('edit');
+        // Route::get('/{idea}', [IdeaController::class, 'show'])->name('show');
 
         Route::middleware('auth')->group(function () {
-            Route::post('', [IdeaController::class, 'store'])->name('store');
-            Route::put('/{idea}', [IdeaController::class, 'update'])->name('update');
-            Route::delete('/{idea}', [IdeaController::class, 'destroy'])->name('destroy');
-            Route::post('/{idea}/comments', [CommentController::class, 'store'])->name('comments.store');
+            // Route::get('/{idea}/edit', [IdeaController::class, 'edit'])->name('edit');
+            // Route::post('', [IdeaController::class, 'store'])->name('store');
+            // Route::put('/{idea}', [IdeaController::class, 'update'])->name('update');
+            // Route::delete('/{idea}', [IdeaController::class, 'destroy'])->name('destroy');
+
+            // Route::post('/{idea}/comments', [CommentController::class, 'store'])->name('comments.store');
         });
     });
+
+Route::resource('ideas', IdeaController::class)->except('index','create','show')->middleware('auth');
+Route::resource('ideas', IdeaController::class)->only('show');
+
+Route::resource('ideas.comments', CommentController::class)->only('store')->middleware('auth');
 
 Route::get('/terms', function () {
     return view('terms');

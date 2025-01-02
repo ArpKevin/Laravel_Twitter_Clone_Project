@@ -18,6 +18,8 @@ class CommentController extends Controller
             "content"=> request()->get("comment_content")
         ]);
 
+
+
         return to_route('ideas.show', $idea->id)->with("success","Comment successfully added");
     }
 }
