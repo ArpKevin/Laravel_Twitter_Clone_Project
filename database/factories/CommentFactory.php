@@ -7,9 +7,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Idea>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
-class IdeaFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +19,7 @@ class IdeaFactory extends Factory
     public function definition()
     {
         return [
-            'content' => fake()->text(200),
-            'likes' => fake()->numberBetween(1,999)
+            'content' => fake()->text(100)
         ];
     }
 }
