@@ -39,12 +39,12 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $ideas = Idea::factory()->count($ideaSeedCount)->create([
-            'user_id' => fn() => $users->random()->id
+            'user_id' => fn() => User::inRandomOrder()->first()->id
         ]);
 
         Comment::factory()->count($commentSeedCount)->create([
-            'user_id' => fn() => $users->random()->id,
-            'idea_id' => fn() => $ideas->random()->id
+            'user_id' => fn() => User::inRandomOrder()->first()->id,
+            'idea_id' => fn() => Idea::inRandomOrder()->first()->id
         ]);
     }
 }
