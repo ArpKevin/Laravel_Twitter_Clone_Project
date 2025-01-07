@@ -19,7 +19,7 @@
     @foreach ($idea->comments->sortByDesc('created_at') as $comment)
         <div class="d-flex align-items-start">
             <img style="width:35px" class="me-2 avatar-sm rounded-circle"
-                src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $comment->user->name }}"
+                src="{{$comment->user->getImageURL()}}"
                 alt="{{ $comment->user->name }} Avatar">
             <div class="w-100">
                 <div class="d-flex justify-content-between">

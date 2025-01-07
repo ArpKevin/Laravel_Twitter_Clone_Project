@@ -6,7 +6,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
                     <img style="width:150px" class="me-3 avatar-sm rounded-circle"
-                        src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $user->name }}"
+                        src="{{$user->getImageURL()}}"
                         alt="{{ $user->name }} Avatar">
                     <div>
                         <input name="name" value="{{ $user->name }}" type="text" class="form-group">
