@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="card-body">
-        @if ($editing ?? false)
+        @if ($editing_idea ?? false)
         <form action="{{ route('ideas.update', $idea->id) }}" method="post">
             @csrf
             @method('put')

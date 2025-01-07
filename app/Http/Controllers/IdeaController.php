@@ -28,9 +28,9 @@ class IdeaController extends Controller
             abort(404);
         }
 
-        $editing = true;
+        $editing_idea = true;
 
-        return view("ideas.show", compact("idea", "editing"));
+        return view("ideas.show", compact("idea", "editing_idea"));
     }
 
     public function update(Idea $idea){
