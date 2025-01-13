@@ -8,12 +8,12 @@
         <div class="col-6">
             <div class="mt-3">
                 @include('shared.success-message')
-                @include('shared.user-card')
+                @include('users.shared.user-card')
             </div>
             <hr>
             @forelse ($ideas as $idea)
                 <div class="mt-3">
-                    @include('shared.idea-card')
+                    @include('ideas.shared.idea-card')
                 </div>
             @empty
                 <p class="text-center mt-4">No results found.</p>

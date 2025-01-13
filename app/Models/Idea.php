@@ -23,4 +23,8 @@ class Idea extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function likes(){
+        return $this->belongsToMany(User::class, 'idea_like', 'idea_id', 'user_id')->withTimestamps();
+    }
 }

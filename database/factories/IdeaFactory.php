@@ -20,7 +20,6 @@ class IdeaFactory extends Factory
     {
         return [
             'content' => fake()->text(200),
-            'likes' => fake()->numberBetween(1,999)
         ];
     }
 }
