@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(User::class, 'user', ['except' => ['show', 'profile']]);
+    }
+
     // duplicate compact('ideas') in show() and edit() to be refactored
     public function show(User $user){
         $ideas = $user->ideas()->latest()->paginate(5);
