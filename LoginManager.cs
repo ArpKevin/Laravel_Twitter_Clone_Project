@@ -25,33 +25,21 @@ public class LoginManager : MonoBehaviour
             ErrorText.text = "";
         }
 
-        if (string.IsNullOrWhiteSpace(Log_Email.text) || !IsValidEmail(Log_Email.text))
-        {
-            ShowError("Please enter a valid email address!");
-            return;
-        }
-
-        if (string.IsNullOrWhiteSpace(Log_Password.text) || Log_Password.text.Length < 8)
-        {
-            ShowError("Password must be at least 8 characters!");
-            return;
-        }
-
         StartCoroutine(LoginUserCoroutine(Log_Email.text, Log_Password.text));
     }
 
     private IEnumerator LoginUserCoroutine(string email, string password)
     {
-        yield return StartCoroutine(DB_Manager.LoginUser(email, password, (success, username) =>
+        yield return StartCoroutine(DB_Manager.LoginUser(email, password, (success, message) =>
         {
             if (success)
             {
-                Debug.Log($"Successfully logged in as: {username}");
+                Debug.Log($"Successfully logged in as: {message}");
                 SceneManager.LoadScene(3); // Make sure this scene index is correct for your main scene
             }
             else
             {
-                ShowError("Invalid email or password!");
+                ShowError(message);
             }
         }));
     }
@@ -63,18 +51,5 @@ public class LoginManager : MonoBehaviour
             ErrorText.text = message;
         }
         Debug.LogError(message);
-    }
-
-    private bool IsValidEmail(string email)
-    {
-        try
-        {
-            var addr = new System.Net.Mail.MailAddress(email);
-            return addr.Address == email;
-        }
-        catch
-        {
-            return false;
-        }
     }
 }

@@ -27,30 +27,6 @@ public class RegisterManager : MonoBehaviour
             ErrorText.text = "";
         }
 
-        if (string.IsNullOrWhiteSpace(Reg_Email.text) || !IsValidEmail(Reg_Email.text))
-        {
-            ShowError("Please enter a valid email address!");
-            return;
-        }
-
-        if (string.IsNullOrWhiteSpace(Reg_Username.text) || Reg_Username.text.Length < 3)
-        {
-            ShowError("Username must be at least 3 characters!");
-            return;
-        }
-
-        if (string.IsNullOrWhiteSpace(Reg_Password.text) || Reg_Password.text.Length < 8)
-        {
-            ShowError("Password must be at least 8 characters!");
-            return;
-        }
-
-        if (string.IsNullOrWhiteSpace(Reg_Password_Repeat.text))
-        {
-            ShowError("Please confirm your password!");
-            return;
-        }
-
         if (Reg_Password.text != Reg_Password_Repeat.text)
         {
             ShowError("Passwords do not match!");
@@ -71,7 +47,7 @@ public class RegisterManager : MonoBehaviour
             }
             else
             {
-                ShowError($"Registration failed: {message}");
+                ShowError(message);
             }
         }));
     }
@@ -83,18 +59,5 @@ public class RegisterManager : MonoBehaviour
             ErrorText.text = message;
         }
         Debug.LogError(message);
-    }
-
-    private bool IsValidEmail(string email)
-    {
-        try
-        {
-            var addr = new System.Net.Mail.MailAddress(email);
-            return addr.Address == email;
-        }
-        catch
-        {
-            return false;
-        }
     }
 }

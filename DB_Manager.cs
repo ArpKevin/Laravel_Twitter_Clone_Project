@@ -42,6 +42,57 @@ public class DB_Manager : MonoBehaviour
         public string password;
     }
 
+    [Serializable]
+    private class ErrorResponse
+    {
+        public string message;
+        public ErrorDetails errors;
+    }
+
+    [Serializable]
+    private class ErrorDetails
+    {
+        public string[] email;
+        public string[] password;
+        public string[] name;
+    }
+
+    private class JsonHelper
+    {
+        public static T ParseJson<T>(string json)
+        {
+            try
+            {
+                // Handle Laravel's validation error format
+                if (json.Contains("\"message\":\"The given data was invalid.\""))
+                {
+                    // Extract the first error message from the errors object
+                    int errorsStart = json.IndexOf("\"errors\":{");
+                    if (errorsStart != -1)
+                    {
+                        int firstErrorStart = json.IndexOf("[\"", errorsStart);
+                        if (firstErrorStart != -1)
+                        {
+                            int firstErrorEnd = json.IndexOf("\"]", firstErrorStart);
+                            if (firstErrorEnd != -1)
+                            {
+                                string errorMessage = json.Substring(firstErrorStart + 2, firstErrorEnd - (firstErrorStart + 2));
+                                return JsonUtility.FromJson<T>(json);
+                            }
+                        }
+                    }
+                }
+                
+                return JsonUtility.FromJson<T>(json);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"JSON Parse Error: {e.Message}\nJSON: {json}");
+                throw;
+            }
+        }
+    }
+
     public static string GetAuthToken()
     {
         return authToken;
@@ -66,19 +117,19 @@ public class DB_Manager : MonoBehaviour
             {
                 try
                 {
-                    var loginResponse = JsonUtility.FromJson<LoginResponse>(response);
+                    var loginResponse = JsonHelper.ParseJson<LoginResponse>(response);
                     authToken = loginResponse.token;
                     callback(true, loginResponse.user.name);
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError($"Failed to parse registration response: {e.Message}");
-                    callback(false, "Registration failed: Invalid response format");
+                    Debug.LogError($"Failed to parse registration response: {e.Message}\nResponse: {response}");
+                    callback(false, GetErrorMessage(response));
                 }
             }
             else
             {
-                callback(false, response);
+                callback(false, GetErrorMessage(response));
             }
         });
     }
@@ -100,52 +151,63 @@ public class DB_Manager : MonoBehaviour
             {
                 try
                 {
-                    var loginResponse = JsonUtility.FromJson<LoginResponse>(response);
+                    var loginResponse = JsonHelper.ParseJson<LoginResponse>(response);
                     authToken = loginResponse.token;
                     callback(true, loginResponse.user.name);
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError($"Failed to parse login response: {e.Message}");
-                    callback(false, "Login failed: Invalid response format");
+                    Debug.LogError($"Failed to parse login response: {e.Message}\nResponse: {response}");
+                    callback(false, GetErrorMessage(response));
                 }
             }
             else
             {
-                callback(false, response);
+                callback(false, GetErrorMessage(response));
             }
         });
     }
 
-    public static IEnumerator GetUserData(System.Action<bool, UserData> callback)
+    private static string GetErrorMessage(string response)
     {
-        if (string.IsNullOrEmpty(authToken))
+        try
         {
-            callback(false, null);
-            yield break;
-        }
+            // Try to parse as a validation error response
+            if (response.Contains("\"message\":\"The given data was invalid.\""))
+            {
+                int errorsStart = response.IndexOf("\"errors\":{");
+                if (errorsStart != -1)
+                {
+                    int firstErrorStart = response.IndexOf("[\"", errorsStart);
+                    if (firstErrorStart != -1)
+                    {
+                        int firstErrorEnd = response.IndexOf("\"]", firstErrorStart);
+                        if (firstErrorEnd != -1)
+                        {
+                            return response.Substring(firstErrorStart + 2, firstErrorEnd - (firstErrorStart + 2));
+                        }
+                    }
+                }
+            }
 
-        string url = $"{API_URL}/export/user-data";
-        yield return SendGetRequest(url, (success, response) =>
+            // Try to parse as a general error message
+            if (response.Contains("\"message\":"))
+            {
+                int messageStart = response.IndexOf("\"message\":\"") + 11;
+                int messageEnd = response.IndexOf("\"", messageStart);
+                if (messageStart != -1 && messageEnd != -1)
+                {
+                    return response.Substring(messageStart, messageEnd - messageStart);
+                }
+            }
+
+            return "An error occurred. Please try again.";
+        }
+        catch (Exception e)
         {
-            if (success)
-            {
-                try
-                {
-                    var userData = JsonUtility.FromJson<UserData>(response);
-                    callback(true, userData);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"Failed to parse user data: {e.Message}");
-                    callback(false, null);
-                }
-            }
-            else
-            {
-                callback(false, null);
-            }
-        });
+            Debug.LogError($"Error parsing error message: {e.Message}\nResponse: {response}");
+            return "An unexpected error occurred.";
+        }
     }
 
     private static IEnumerator SendPostRequest(string url, string jsonData, System.Action<bool, string> callback)
@@ -156,6 +218,7 @@ public class DB_Manager : MonoBehaviour
             req.uploadHandler = new UploadHandlerRaw(bodyRaw);
             req.downloadHandler = new DownloadHandlerBuffer();
             req.SetRequestHeader("Content-Type", "application/json");
+            req.SetRequestHeader("Accept", "application/json");
             
             if (!string.IsNullOrEmpty(authToken))
             {
@@ -164,16 +227,16 @@ public class DB_Manager : MonoBehaviour
 
             yield return req.SendWebRequest();
 
+            string responseText = req.downloadHandler.text;
+            Debug.Log($"Response from {url}: {responseText}");
+
             if (req.result == UnityWebRequest.Result.Success)
             {
-                string jsonResponse = req.downloadHandler.text;
-                Debug.Log($"Response from {url}: {jsonResponse}");
-                callback(true, jsonResponse);
+                callback(true, responseText);
             }
             else
             {
-                Debug.LogError($"Error from {url}: {req.error}");
-                callback(false, req.error);
+                callback(false, responseText);
             }
         }
     }
@@ -186,19 +249,20 @@ public class DB_Manager : MonoBehaviour
             {
                 req.SetRequestHeader("Authorization", $"Bearer {authToken}");
             }
+            req.SetRequestHeader("Accept", "application/json");
 
             yield return req.SendWebRequest();
 
+            string responseText = req.downloadHandler.text;
+            Debug.Log($"Response from {url}: {responseText}");
+
             if (req.result == UnityWebRequest.Result.Success)
             {
-                string jsonResponse = req.downloadHandler.text;
-                Debug.Log($"Response from {url}: {jsonResponse}");
-                callback(true, jsonResponse);
+                callback(true, responseText);
             }
             else
             {
-                Debug.LogError($"Error from {url}: {req.error}");
-                callback(false, req.error);
+                callback(false, responseText);
             }
         }
     }
