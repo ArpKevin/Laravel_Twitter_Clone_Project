@@ -11,11 +11,11 @@ class UserPolicy
 
     public function update(User $authenticatedUser, User $targetUser)
     {
-        return $authenticatedUser->id === $targetUser->id;
+        return $authenticatedUser->is($targetUser);
     }
 
     public function edit(User $authenticatedUser, User $targetUser)
     {
-        return $authenticatedUser->id === $targetUser->id;
+        return $authenticatedUser->is($targetUser);
     }
 }
