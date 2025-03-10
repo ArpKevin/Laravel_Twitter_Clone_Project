@@ -47,7 +47,8 @@
                     {{ $idea->created_at->diffForHumans() }} </span>
             </div>
         </div>
-        @include('ideas.shared.comments-box')
+        @if(Route::currentRouteName() === 'ideas.show')
+            @include('ideas.shared.comments-box')
         @endif
     </div>
 </div>
