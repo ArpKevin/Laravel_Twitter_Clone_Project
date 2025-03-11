@@ -1,4 +1,6 @@
-@extends('shared.layout')
+@extends('shared.app')
+
+@section('title', "Edit User Profile")
 
 @section('content')
     <div class="row">

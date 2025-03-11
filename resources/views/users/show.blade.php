@@ -1,4 +1,6 @@
-@extends('shared.layout')
+@extends('shared.app')
+
+@section('title', $user->name)
 
 @section('content')
     <div class="row">

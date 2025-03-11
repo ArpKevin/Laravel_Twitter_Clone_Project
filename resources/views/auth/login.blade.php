@@ -1,4 +1,6 @@
-@extends('shared.layout')
+@extends('shared.app')
+
+@section('title', 'Login')
 
 @section('content')
     <div class="container">

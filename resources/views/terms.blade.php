@@ -1,5 +1,7 @@
-@extends('shared.layout')
+@extends('shared.app')
 
+
+@section('title', "Terms")
 
 @section('content')
     <div class="row">

@@ -1,4 +1,16 @@
-@extends('shared.layout')
+@extends('shared.app')
+
+{{-- @section('title')
+    Dashboard
+@endsection --}}
+
+@if(Route::currentRouteName() === 'feed')
+    @section('title', "Feed")
+@elseif(Route::currentRouteName() === 'dashboard')
+    @section('title', 'Dashboard')
+@endif
+
+
 
 @section('content')
     <div class="row">
