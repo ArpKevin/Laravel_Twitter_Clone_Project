@@ -36,19 +36,20 @@
             </div>
         </form>
         @else
-        <p class="fs-6 fw-light text-muted">
-            {{ $idea->content }}
-        </p>
+            <p class="fs-6 fw-light text-muted">
+                {{ $idea->content }}
+            </p>
 
-        <div class="d-flex justify-content-between">
-            @include('ideas.shared.like-button')
-            <div>
-                <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
-                    {{ $idea->created_at->diffForHumans() }} </span>
+            <div class="d-flex justify-content-between">
+                @include('ideas.shared.like-button')
+                <div>
+                    <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
+                        {{ $idea->created_at->diffForHumans() }} </span>
+                </div>
             </div>
-        </div>
-        @if(Route::currentRouteName() === 'ideas.show')
-            @include('ideas.shared.comments-box')
+            @if(Route::currentRouteName() === 'ideas.show')
+                @include('ideas.shared.comments-box')
+            @endif
         @endif
     </div>
 </div>
