@@ -35,10 +35,9 @@ class IdeaController extends Controller
         return view("ideas.show", compact("idea", "editing_idea"));
     }
 
-    public function update(UpdateIdeaRequest $request ,Idea $idea){
-        // if(auth()->id() !== $idea->user_id){
-        //     abort(404);
-        // }
+    public function update(UpdateIdeaRequest $request, $id)
+    {
+        $idea = Idea::findOrFail($id);
 
         $this->authorize('idea.edit', $idea);
 
@@ -48,17 +47,21 @@ class IdeaController extends Controller
             'content'=> $validated['idea_content'] ?? null,
         ]);
 
-        return to_route('ideas.show', $idea->id)->with('success','Idea was updated successfully.');
+        if (auth()->user()->is_admin || auth()->user()->id === $idea->user_id) {
+            return to_route('dashboard')->with('success','Idea was updated successfully.');
+        }
+
+        return response()->json(['message' => 'Unauthorized'], 403);
     }
-    public function destroy(Idea $idea)
+
+    public function destroy($id)
     {
-        // if(auth()->id() !== $idea->user_id){
-        //     abort(404);
-        // }
+        $idea = Idea::findOrFail($id);
 
-        $this->authorize('idea.delete', $idea);
-
-        $idea->delete();
-        return to_route('dashboard')->with('success', 'Idea was deleted successfully.');
+        if (auth()->user()->is_admin || auth()->user()->id === $idea->user_id) {
+            $idea->delete();
+            return to_route('dashboard')->with('success','Idea was deleted successfully.');
+        }
+        return response()->json(['message' => 'Unauthorized'], 403);
     }
 }

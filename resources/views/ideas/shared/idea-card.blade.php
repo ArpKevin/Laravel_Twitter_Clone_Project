@@ -14,9 +14,13 @@
             <form action="{{ route('ideas.destroy', $idea->id) }}" method="post">
                 @csrf
                 @method('delete')
-                @if(auth()->id() === $idea->user_id) <a class="mx-2" href="{{ route('ideas.edit', $idea->id) }}" style="text-decoration: none">Edit</a> @endif
+                @if(auth()->check() && (auth()->id() === $idea->user_id || auth()->user()->is_admin))
+                    <a class="mx-2" href="{{ route('ideas.edit', $idea->id) }}" style="text-decoration: none">Edit</a>
+                @endif
                 <a href="{{ route('ideas.show', $idea->id) }}" style="text-decoration: none">View</a>
-                @if(auth()->id() === $idea->user_id) <button class="btn btn-danger btn-sm">X</button> @endif
+                @if(auth()->check() && (auth()->id() === $idea->user_id || auth()->user()->is_admin))
+                    <button class="btn btn-danger btn-sm">X</button>
+                @endif
             </form>
         </div>
     </div>
