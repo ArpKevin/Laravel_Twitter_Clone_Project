@@ -6,6 +6,8 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
-        View::share('topUsers', User::withCount('ideas')->orderBy('ideas_count', 'desc')->take(5)->get());
+        \Debugbar::enable();
+
+        $topUsers = Cache::remember("topUsers", Carbon::now()->addMinutes(3), function(){
+            return User::withCount('ideas')->orderBy('ideas_count', 'desc')->take(5)->get();
+        });
+
+        View::share('topUsers', $topUsers);
     }
 }
