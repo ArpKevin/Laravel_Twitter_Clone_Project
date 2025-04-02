@@ -14,7 +14,7 @@ class PinController extends Controller
      */
     public function index()
     {
-        return Pin::with('users', 'pinCategory')->get();
+        return response()->json(Pin::with('users', 'pinCategory')->get(), 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
     /**
