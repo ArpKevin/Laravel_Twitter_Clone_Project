@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DataExportController;
+use App\Http\Controllers\PinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/export/user-data', [DataExportController::class, 'exportData']);
     Route::get('/export/public-data', [DataExportController::class, 'getAllPublicData']);
 });
+
+Route::get('/pin-data', [PinController::class, 'index'])->name('pins.index');
