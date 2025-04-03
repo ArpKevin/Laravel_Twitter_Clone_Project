@@ -19,7 +19,7 @@
                 @endif
                 <a href="{{ route('ideas.show', $idea->id) }}" style="text-decoration: none">View</a>
                 @if(auth()->check() && (auth()->id() === $idea->user_id || auth()->user()->is_admin))
-                    <button class="btn btn-danger btn-sm">X</button>
+                    <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this idea?')">X</button>
                 @endif
             </form>
         </div>
