@@ -17,69 +17,10 @@ class PinController extends Controller
         return response()->json(Pin::all(), 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function visit(Pin $pin)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pin  $pin
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pin $pin)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pin  $pin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pin $pin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pin  $pin
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pin $pin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pin  $pin
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pin $pin)
-    {
-        //
+        $user = auth()->user();
+        $user->pins()->attach($pin);
+        return response()->json(['message' => 'Pin marked as visited'], 200);
     }
 }
