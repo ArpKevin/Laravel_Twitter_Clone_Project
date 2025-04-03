@@ -33,4 +33,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/export/public-data', [DataExportController::class, 'getAllPublicData']);
 });
 
-Route::get('/pin-data', [PinController::class, 'index'])->name('pins.index');
+Route::get('/pins', [PinController::class, 'index'])->name("pins.index");
