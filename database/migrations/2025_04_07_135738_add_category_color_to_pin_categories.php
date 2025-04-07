@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('pin_categories', function (Blueprint $table) {
-            $table->string('category_color')->after("category_name");
+            $table->string('category_color')->after("category_name")->nullable();
         });
     }
 

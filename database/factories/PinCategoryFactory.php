@@ -17,7 +17,8 @@ class PinCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'category_name' => fake()->word(10)
+            'category_name' => fake()->word(10),
+            'category_color' => fake()->hexColor(),
         ];
     }
 }
