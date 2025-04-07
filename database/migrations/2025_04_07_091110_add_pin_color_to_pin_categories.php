@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('pins', function (Blueprint $table) {
-            $table->string('pin_color')->after("longitude");
+        Schema::table('pin_categories', function (Blueprint $table) {
+            $table->string('pin_color')->after("category_name");
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('pins', function (Blueprint $table) {
+        Schema::table('pin_categories', function (Blueprint $table) {
             $table->dropColumn('pin_color');
         });
     }
