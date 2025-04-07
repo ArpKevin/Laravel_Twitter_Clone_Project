@@ -58,4 +58,35 @@ class AuthController extends Controller
 
         return redirect()->route('dashboard')->with('success','Successfully logged out');
     }
+    public function getUserPinIds()
+    {
+        $user = auth()->user();
+    return response()->json($user->pins()->pluck('id')->toArray());
+    }
+
+    public function addPin(Request $request)
+    {
+        $request-
+        validate([
+            'pin_id' => 'required|exists:pin,id',
+        ]);
+
+        // $exists = DB::table('pin_user')
+        // ->where('pin_id', $request->pin_id)
+        // ->where('user_id', $request->user()->id)
+        // ->exists();
+
+        // if ($exists) {
+        //     return response()->json(['message' => 'You already have this Pin associated with your account.'], 409);
+        // }
+
+        if ($request->user()->pins()->where('pin_id', $request->pin_id)->exists()) {
+            return response()->json(['message' => 'You already have this Pin associated with your account.'], 409);
+        }
+
+        $pin = Pin::find($request->pin_id);
+
+        $request->user()->pins()->attach($pin);
+        return response()->json(['message' => 'Pin added successfully.']);
+    }
 }

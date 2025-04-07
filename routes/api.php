@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\DataExportController;
 use App\Http\Controllers\PinController;
 
@@ -34,3 +34,9 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/pins', [PinController::class, 'index'])->name("pins.index");
+
+Route::post('/add-pin', [AuthController::class, 'addPin'])->middleware('auth:sanctum');
+
+Route::get('/user-pin-ids', [AuthController::class, 'getUserPinIds'])
+// ->middleware('auth:sanctum')
+;
