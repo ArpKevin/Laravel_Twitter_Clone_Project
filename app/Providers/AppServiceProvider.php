@@ -37,6 +37,10 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('topUsers', app('topUsers'));
 
+        if (app('db')->connection()->getDatabaseName()) {
+            View::share('topUsers', app('topUsers'));
+        }
+
         if (app()->environment('production')) {
             URL::forceScheme('https');
         }
