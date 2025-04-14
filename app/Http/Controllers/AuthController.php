@@ -19,14 +19,13 @@ class AuthController extends Controller
             'email'=> 'required|email|unique:users,email',
             'password'=> 'required|confirmed|min:8'
         ]);
+        if($validated){
+            $user = User::create([
+                'name'=> $validated['name'],
+                'email'=> $validated['email'],
+                'password'=> Hash::make($validated['password']),
+            ]);
 
-        $user = User::create([
-            'name'=> $validated['name'],
-            'email'=> $validated['email'],
-            'password'=> Hash::make($validated['password']),
-        ]);
-
-        if($user){
             return redirect()->route('login')->with('success','Account created successfully');
         }
 
