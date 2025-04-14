@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,5 +38,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::share('topUsers', $topUsers);
+
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
