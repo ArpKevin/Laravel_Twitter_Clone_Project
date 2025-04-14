@@ -34,9 +34,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrapFive();
-
-        View::share('topUsers', app('topUsers'));
-
+        
         if (app('db')->connection()->getDatabaseName()) {
             View::share('topUsers', app('topUsers'));
         }
