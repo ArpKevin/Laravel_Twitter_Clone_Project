@@ -24,3 +24,5 @@ Route::post('/add-pin', [AuthController::class, 'addPin'])->middleware('auth:san
 Route::get('/user-pin-ids', [AuthController::class, 'getUserPinIds'])
 // ->middleware('auth:sanctum')
 ;
+Route::post('/register', [AuthController::class, 'register']);
+Route::post("login", [AuthController::class, 'login']);
