@@ -30,17 +30,17 @@ class ApiAuthController extends Controller
     }
 
     public function register(Request $request){
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
         ]);
 
-        $user = User::create([
-            'name'=> $validated['name'],
-            'email'=> $validated['email'],
-            'password'=> Hash::make($validated['password']),
-        ]);
+        $user = User::create($request->all());
+
+        if($user){
+            return response()->json(["success" => "Account created successfully"]);
+        }
 
         // Mail::to($user->email)
         // ->send(new WelcomeEmail($user));

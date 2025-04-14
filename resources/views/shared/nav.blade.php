@@ -12,10 +12,10 @@
             <ul class="navbar-nav">
                 @guest
                     <li class="nav-item">
-                        <a class="{{(Route::is('login')) ? 'active' : '' }} nav-link" aria-current="page" href="{{ route('login') }}">Login</a>
+                        <a class="{{(Route::is('login')) ? 'active' : '' }} nav-link" aria-current="page" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="{{(Route::is('register')) ? 'active' : '' }} nav-link" href="{{ route('register') }}">Register</a>
+                        <a class="{{(Route::is('register')) ? 'active' : '' }} nav-link" href="/register">Register</a>
                     </li>
                 @endguest
                 @auth
