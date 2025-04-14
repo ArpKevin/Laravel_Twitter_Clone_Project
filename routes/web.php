@@ -10,6 +10,7 @@ use App\Http\Controllers\IdeaLikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\PinController;
 use Illuminate\Support\Facades\Route;
 
 /*

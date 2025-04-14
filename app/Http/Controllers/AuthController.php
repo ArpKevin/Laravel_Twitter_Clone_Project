@@ -26,10 +26,17 @@ class AuthController extends Controller
             'password'=> Hash::make($validated['password']),
         ]);
 
+        if($user){
+            return redirect()->route('login')->with('success','Account created successfully');
+        }
+
+
+        return response()->json(["error" => "Invalid or missing credentials"]);
+
         // Mail::to($user->email)
         // ->send(new WelcomeEmail($user));
 
-        return redirect()->route('login')->with('success','Account created successfully');
+        // return redirect()->route('login')->with('success','Account created successfully');
     }
 
     public function login(){
