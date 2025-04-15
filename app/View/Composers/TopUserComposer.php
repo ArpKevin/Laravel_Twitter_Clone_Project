@@ -15,8 +15,6 @@ class TopUserComposer
      */
     public function compose(View $view): void
     {
-        $view->with('topUsers', Cache::remember("topUsers", Carbon::now()->addMinutes(3), function(){
-            return User::withCount('ideas')->orderBy('ideas_count', 'desc')->take(5)->get();
-        }));
+        $view->with('topUsers', User::withCount('ideas')->orderBy('ideas_count', 'desc')->take(5)->get());
     }
 }
