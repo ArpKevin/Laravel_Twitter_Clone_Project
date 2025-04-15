@@ -28,7 +28,7 @@ composer install
 ### Create your `.env` file
 
 ```bash
-cp .env.example .env
+copy .env.example .env
 ```
 
 ### Edit `.env` file to connect to your database
