@@ -1,3 +1,56 @@
+# Echomap website
+
+Our forum-style web application offers a community space for users to share ideas, post content, and engage with others around the cultural landmarks and history of Civitas Fortissima in Balassagyarmat.
+
+---
+
+## Installation
+
+### First clone this repository:
+
+```bash
+git clone https://github.com/ArpKevin/echomap_website.git
+```
+
+### Install composer:
+
+```bash
+cd echomap_website
+composer install
+```
+
+
+### Create your `.env` file
+
+```bash
+cp .env.example .env
+```
+
+### Edit `.env` file to connect to your database
+
+```
+DB_CONNECTION=mysql  
+DB_HOST={server name, or ip address}  
+DB_PORT=3306  
+DB_DATABASE={your database name}  
+DB_USERNAME=root  
+DB_PASSWORD=
+```
+
+### Before migration you have to create the table you connect to  
+Migrate the database (`echomap_website/database/migrations`)
+
+```bash
+php artisan migrate
+```
+
+### Generate your key to the application:
+
+```bash
+php artisan key:generate
+```
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
