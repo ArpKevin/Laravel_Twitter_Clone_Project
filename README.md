@@ -6,19 +6,24 @@ Our forum-style web application offers a community space for users to share idea
 
 ## Installation
 
-### First clone this repository:
+### Install the Laravel installer via Composer:
+
+```bash
+composer global require laravel/installer
+```
+
+### Clone this repository:
 
 ```bash
 git clone https://github.com/ArpKevin/echomap_website.git
 ```
 
-### Install composer:
+### Install composer within the cloned project:
 
 ```bash
 cd echomap_website
 composer install
 ```
-
 
 ### Create your `.env` file
 
@@ -50,6 +55,10 @@ php artisan migrate
 php artisan key:generate
 ```
 
+## Prerequisites
+- PHP >= 8.1
+- Composer
+- MySQL Server
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
