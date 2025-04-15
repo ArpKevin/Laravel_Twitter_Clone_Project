@@ -19,11 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('topUsers', function () {
-            return Cache::remember("topUsers", Carbon::now()->addMinutes(3), function() {
-                return User::withCount('ideas')->orderBy('ideas_count', 'desc')->take(5)->get();
-            });
-        });
     }
 
     /**
@@ -35,9 +30,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
         
-        if (app('db')->connection()->getDatabaseName()) {
-            View::share('topUsers', app('topUsers'));
-        }
+        $topUsers = Cache::remember("topUsers", Carbon::now()->addMinutes(3), function(){
+            return User::withCount('ideas')->orderBy('ideas_count', 'desc')->take(5)->get();
+        });
+
+        View::share('topUsers', $topUsers);
 
         if (app()->environment('production')) {
             URL::forceScheme('https');
