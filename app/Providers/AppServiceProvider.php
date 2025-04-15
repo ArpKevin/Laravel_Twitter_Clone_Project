@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
+use App\View\Composers\TopUserComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,14 +31,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
         
-        $topUsers = Cache::remember("topUsers", Carbon::now()->addMinutes(3), function(){
-            return User::withCount('ideas')->orderBy('ideas_count', 'desc')->take(5)->get();
-        });
-
-        View::share('topUsers', $topUsers);
-
         if (app()->environment('production')) {
             URL::forceScheme('https');
         }
+
+        View::composer(["*"], TopUserComposer::class);
     }
 }
