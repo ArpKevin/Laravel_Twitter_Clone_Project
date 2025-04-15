@@ -42,11 +42,19 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-### Before migration you have to create the table you connect to  
-Migrate the database (`echomap_website/database/migrations`)
+### Create database in phpmyadmin
+Now you must create the database in phpmyadmin (http://localhost/phpmyadmin/) with the same name as what the DB_DATABASE variable has after starting the Apache and MySQL port from the Xampp Control Panel
+
+### Migrate the database
 
 ```bash
 php artisan migrate
+```
+
+### Seed the database with data (optional)
+
+```bash
+php artisan db:seed
 ```
 
 ### Generate your key to the application:
