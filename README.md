@@ -1,3 +1,73 @@
+# Echomap website
+
+Our forum-style web application offers a community space for users to share ideas, post content, and engage with others around the cultural landmarks and history of Civitas Fortissima in Balassagyarmat.
+
+---
+
+## Installation
+
+### Install the Laravel installer via Composer:
+
+```bash
+composer global require laravel/installer
+```
+
+### Clone this repository:
+
+```bash
+git clone https://github.com/ArpKevin/echomap_website.git
+```
+
+### Install composer within the cloned project:
+
+```bash
+cd echomap_website
+composer install
+```
+
+### Create your `.env` file
+
+```bash
+copy .env.example .env
+```
+
+### Edit `.env` file to connect to your database
+
+```
+DB_CONNECTION=mysql  
+DB_HOST={server name, or ip address}  
+DB_PORT=3306  
+DB_DATABASE={your database name}  
+DB_USERNAME=root  
+DB_PASSWORD=
+```
+
+### Create database in phpmyadmin
+Now you must create the database in phpmyadmin (http://localhost/phpmyadmin/) with the same name as what the DB_DATABASE variable has after starting the Apache and MySQL port from the Xampp Control Panel
+
+### Migrate the database
+
+```bash
+php artisan migrate
+```
+
+### Seed the database with data (optional)
+
+```bash
+php artisan db:seed
+```
+
+### Generate your key to the application:
+
+```bash
+php artisan key:generate
+```
+
+## Prerequisites
+- PHP >= 8.1
+- Composer
+- MySQL Server
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
