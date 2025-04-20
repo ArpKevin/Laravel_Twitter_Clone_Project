@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use App\View\Composers\TopUserComposer;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
