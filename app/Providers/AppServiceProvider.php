@@ -37,11 +37,5 @@ class AppServiceProvider extends ServiceProvider
         }
 
         View::composer(["*"], TopUserComposer::class);
-
-        $topUsers = Cache::remember("topUsers", Carbon::now()->addMinutes(3), function(){
-            return User::withCount('ideas')->orderBy('ideas_count', 'desc')->take(5)->get();
-        });
-
-        View::share('topUsers', $topUsers);
     }
 }
