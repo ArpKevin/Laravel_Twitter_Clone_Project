@@ -30,7 +30,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
-        \Debugbar::enable();
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
 
         $topUsers = Cache::remember("topUsers", Carbon::now()->addMinutes(3), function(){
             return User::withCount('ideas')->orderBy('ideas_count', 'desc')->take(5)->get();
