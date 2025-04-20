@@ -37,5 +37,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::share('topUsers', $topUsers);
+
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }

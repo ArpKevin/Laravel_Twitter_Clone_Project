@@ -20,8 +20,8 @@ class PinFactory extends Factory
             'pin_name' => $this->faker->sentence(rand(2, 3)),
             'pin_description' => $this->faker->text(200),
             'image_link' => $this->faker->imageUrl(100, 100),
-            'latitude' => $this->faker->latitude(48.040331, 48.086950),
-            'longitude' => $this->faker->longitude(19.253627, 19.317141),
+            'latitude' => $this->faker->latitude(48.059131, 48.086029),
+            'longitude' => $this->faker->longitude(19.262767, 19.311605),
         ];
     }
 }
