@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
+use App\View\Composers\TopUserComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
