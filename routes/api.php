@@ -17,26 +17,8 @@ use App\Http\Controllers\PinController;
 |
 */
 
-// Public routes
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/pins', [PinController::class, 'index']);
 
-// Protected routes
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-    Route::post('/logout', [AuthController::class, 'logout']);
-    
-    // Data export routes
-    Route::get('/export/user-data', [DataExportController::class, 'exportData']);
-    Route::get('/export/public-data', [DataExportController::class, 'getAllPublicData']);
-});
+// Route::post('/add-pin', [AuthController::class, 'addPin'])->middleware('auth:sanctum');
 
-Route::get('/pins', [PinController::class, 'index'])->name("pins.index");
-
-Route::post('/add-pin', [AuthController::class, 'addPin'])->middleware('auth:sanctum');
-
-Route::get('/user-pin-ids', [AuthController::class, 'getUserPinIds'])
-// ->middleware('auth:sanctum')
-;
+// Route::get('/user-pin-ids', [AuthController::class, 'getUserPinIds'])->middleware('auth:sanctum');
