@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Api\DataExportController;
 use App\Http\Controllers\PinController;
+use App\Http\Controllers\ApiAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +19,8 @@ use App\Http\Controllers\PinController;
 
 Route::get('/pins', [PinController::class, 'index']);
 
-// Route::post('/add-pin', [AuthController::class, 'addPin'])->middleware('auth:sanctum');
+Route::post('login', [ApiAuthController::class, 'login']);
+Route::post('register', [ApiAuthController::class, 'register']);
 
-// Route::get('/user-pin-ids', [AuthController::class, 'getUserPinIds'])->middleware('auth:sanctum');
+Route::post('/add-pin', [ApiAuthController::class, 'addPin'])->middleware('auth:sanctum');
+Route::get('/user-pin-ids', [ApiAuthController::class, 'getUserPinIds'])->middleware('auth:sanctum');
