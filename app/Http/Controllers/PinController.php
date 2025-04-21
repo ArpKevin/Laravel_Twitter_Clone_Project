@@ -16,11 +16,4 @@ class PinController extends Controller
     {
         return response()->json(Pin::with('pinCategory')->get(), 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
-
-    public function visit(Pin $pin)
-    {
-        $user = auth()->user();
-        $user->pins()->attach($pin);
-        return response()->json(['message' => 'Pin marked as visited'], 200);
-    }
 }

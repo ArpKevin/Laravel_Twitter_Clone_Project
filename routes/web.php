@@ -68,5 +68,3 @@ Route::get('/terms', function () {
 })->name('terms');
 
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth'])->can('admin');
-
-Route::post("pins/{pin}/visit", [PinController::class, 'visit'])->name('pins.visit')->middleware('auth');
