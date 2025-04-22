@@ -16,5 +16,5 @@
     </div>
 @endauth
 @guest
-    <h4><a href="/login">Login to share your ideas</a> </h4>
+    <h4><a href="{{ route('login') }}">Login to share your ideas</a> </h4>
 @endguest
