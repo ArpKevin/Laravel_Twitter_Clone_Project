@@ -6,12 +6,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 col-md-6">
-                @if (session()->has('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+                @include('shared.success-message')
                 <form class="form mt-5" action="{{route('login')}}" method="post">
                     @csrf
                     <h3 class="text-center text-dark">Login</h3>
