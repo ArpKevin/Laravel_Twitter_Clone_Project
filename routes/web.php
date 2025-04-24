@@ -50,7 +50,7 @@ Route::resource('ideas', IdeaController::class)->only('show');
 
 Route::resource('ideas.comments', CommentController::class)->only('store')->middleware('auth');
 
-Route::resource('users', UserController::class)->only('show', 'edit', 'update')->middleware('auth');
+Route::resource('users', UserController::class)->only('edit', 'update')->middleware('auth');
 Route::resource('users', UserController::class)->only('show');
 
 Route::get('profile', [UserController::class,'profile'])->middleware('auth')->name('profile');
