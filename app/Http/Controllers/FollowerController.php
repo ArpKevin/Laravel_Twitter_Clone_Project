@@ -9,6 +9,10 @@ class FollowerController extends Controller
 {
     public function follow(User $user)
     {
+        if ($user->id === auth()->user()->id) {
+            return redirect()->route('users.show', $user->id)->with('success', 'You cannot follow yourself!');
+        }
+
         $follower = auth()->user();
 
         $follower->followings()->syncWithoutDetaching($user); //->attach() allows duplicates

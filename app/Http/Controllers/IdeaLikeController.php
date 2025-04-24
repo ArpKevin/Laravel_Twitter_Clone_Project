@@ -19,6 +19,6 @@ class IdeaLikeController extends Controller
 
         $liker->likes()->detach($idea);
 
-        return redirect()->route('dashboard', $idea->id)->with('success', 'Liked successfully!');
+        return redirect()->route('dashboard', $idea->id)->with('success', 'Unliked successfully!');
     }
 }
