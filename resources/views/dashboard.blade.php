@@ -13,14 +13,12 @@
                 @include('shared.success-message')
                 @include('shared.submit-idea')
                 @include('shared.mobile-feed')
-                <div class="idea-card">
                     @forelse($ideas as $idea)
                         @include('shared.idea-card')
                     @empty
                         <p class="text-center mt-4">No results found.</p>
                     @endforelse
                     {{ $ideas->withQueryString()->links() }}
-                </div>
             </div>
         </div>
     </div>
