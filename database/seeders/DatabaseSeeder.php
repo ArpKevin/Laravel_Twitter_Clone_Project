@@ -21,17 +21,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $pin_categories_file_path = 'sql_files_for_seeder/pin_categories.sql';
+        $pins_file_path = 'sql_files_for_seeder/pins.sql';
+        \DB::unprepared(file_get_contents($pin_categories_file_path));
+        \DB::unprepared(file_get_contents($pins_file_path));
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $userSeedCount = 30;
         $ideaSeedCount = 50;
         $commentSeedCount = 200;
-        $pinCategorySeedCount = 3;
-        $pinSeedCount = 10;
+        // $pinCategorySeedCount = 3;
+        // $pinSeedCount = 10;
 
         $users = User::factory()->count($userSeedCount)->create();
 
@@ -44,17 +43,17 @@ class DatabaseSeeder extends Seeder
             'idea_id' => fn() => Idea::inRandomOrder()->first()->id
         ]);
 
-        $pinCategories = PinCategory::factory()->count($pinCategorySeedCount)->create();
+        // $pinCategories = PinCategory::factory()->count($pinCategorySeedCount)->create();
 
-        $pins = Pin::factory()->count($pinSeedCount)->create([
-            'pin_category_id' => fn() => $pinCategories->random()->id,
-        ]);
+        // $pins = Pin::factory()->count($pinSeedCount)->create([
+        //     'pin_category_id' => fn() => $pinCategories->random()->id,
+        // ]);
 
-        foreach ($users as $user) {
-            // Attach 1 to 5 random pins to each user
-            $user->pins()->attach(
-                $pins->random(rand(1, 5))->pluck('id')->toArray()
-            );
-        }
+        // foreach ($users as $user) {
+        //     // Attach 1 to 5 random pins to each user
+        //     $user->pins()->attach(
+        //         $pins->random(rand(1, 5))->pluck('id')->toArray()
+        //     );
+        // }
     }
 }
