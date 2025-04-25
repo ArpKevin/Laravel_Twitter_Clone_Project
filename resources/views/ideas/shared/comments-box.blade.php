@@ -8,10 +8,11 @@
                     <span class="time">{{ $comment->created_at->diffForHumans() }}</span>
                 </div>
             </div>
+            <div class="postText">
+                {{ $comment->content }}
+            </div>
         </div>
-        <div class="postText">
-            {{ $comment->content }}
-        </div>
+        
     </div>  
     @empty
         <p class="text-center mt-4">
