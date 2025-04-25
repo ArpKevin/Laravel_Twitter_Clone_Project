@@ -1,49 +1,79 @@
-<div class="card">
-    <div class="px-3 pt-4 pb-2">
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                <img style="width:150px" class="me-3 avatar-sm rounded-circle" src="{{ $user->getImageURL() }}"
-                    alt="{{ $user->name }} Avatar">
-                <div>
-
-                    <h3 class="card-title mb-0"><a href="#"> {{ $user->name }}
-                        </a></h3>
-                    <span class="fs-6 text-muted">{{ $user->email }}</span>
-
-                </div>
-            </div>
-            <div>
-                @if (auth()->id() === $user->id)
-                    <a href="{{ route('users.edit', $user->id) }}">Edit</a>
-                @endif
+<div class="userDiv">
+    @include('shared.success-message')
+    <div class="userProfile">
+        <div class="backgroundImage">
+            <div class="insideProfilePicture" style="background-image: url('{{ $user->getImageURL() }}')">
             </div>
         </div>
-
-        <div class="px-2 mt-4">
-            <h5 class="fs-5"> Bio: </h5>
-
-            <p class="fs-6 fw-light">
-                {{ $user->bio }}
-            </p>
-
-            @include('users.shared.user-stats')
-            @auth
-                @if (auth()->id() !== $user->id)
-                    <div class="mt-3">
-                        @if (auth()->user()->follows($user))
-                            <form action="{{ route('users.unfollow', $user->id) }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-danger btn-sm"> Unfollow </button>
-                            </form>
-                        @else
-                            <form action="{{ route('users.follow', $user->id) }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-primary btn-sm"> Follow </button>
-                            </form>
-                        @endif
-                    </div>
-                @endif
-            @endauth
+        <div class="profilePicture" style="background-image: url('{{ $user->getImageURL() }}')">
         </div>
+        <div class="leftInformation">
+            <div class="informationCenter">
+                <img src="{{ asset('imgs/black/person.svg') }}" alt="" class="theme-icon"><span>{{ $user->followers()->count() }}</span>
+            </div>
+            <div class="informationCenter">
+                <img src="{{ asset('imgs/black/lightbulb.svg') }}" alt="" class="theme-icon"><span>{{ $user->ideas()->count() }}</span>
+            </div>
+        </div>
+        <div class="rightInformation">
+            <div class="informationCenter">
+                <img src="{{ asset('imgs/black/comment.svg') }}" alt="" class="theme-icon"><span>{{ $user->comments()->count() }}</span>
+            </div>
+            <div class="informationCenter">
+                <img src="{{ asset('imgs/black/pin.svg') }}" alt="" class="theme-icon"><span style="color: {{ $user->pins()->count() === $totalPins ? 'green' : 'black' }}">{{ $user->pins()->count() }}/{{ $totalPins }}</span>
+            </div>
+        </div>
+    </div>
+    
+    <span id="birthName">{{ $user->name }}</span>
+
+    <p class="text-center mt-4">Bio: {{ $user->bio }}</p>
+
+    @auth
+    <div class="profileButtons">
+        @if (auth()->check() && auth()->user()->id === $user->id)
+            <button id="profileEdit"><a href="{{ route('users.edit', $user->id) }}">Edit profile</a></button>
+        @else
+            @if (auth()->user()->follows($user))
+                <form action="{{ route('users.unfollow', $user->id) }}" method="POST">
+                    @csrf
+                    <button id="profileFollow" style="background-color: red;">Unfollow</button>
+                </form>
+            @else
+                <form action="{{ route('users.follow', $user->id) }}" method="POST">
+                    @csrf
+                    <button id="profileFollow">Follow</button>
+                </form>
+            @endif
+        @endif
+    </div>
+    @endauth
+
+    <hr id="largeScreenHr">
+
+    <div class="middleInformation">
+        <div class="userStatistics">
+            <img src="{{ asset('imgs/black/person.svg') }}" alt="" class="theme-icon"><span>{{ $user->followers()->count() }}</span>
+            <img src="{{ asset('imgs/black/lightbulb.svg') }}" alt="" class="theme-icon"><span>{{ $user->ideas()->count() }}</span>
+            <img src="{{ asset('imgs/black/comment.svg') }}" alt="" class="theme-icon"><span>{{ $user->comments()->count() }}</span>
+            <img src="{{ asset('imgs/black/pin.svg') }}" alt="" class="theme-icon"><span style="color: {{ $user->pins()->count() === $totalPins ? 'green' : 'black' }}">{{ $user->pins()->count() }}/{{ $totalPins }}</span>
+        </div>
+    </div>
+
+    <hr id="smallScreenHr">
+
+    @include('shared.mobile-feed')
+
+    <div class="idea-card">
+        @forelse($ideas as $idea)
+            @include('shared.idea-card')
+        @empty
+            <p class="text-center mt-4">No results found.</p>
+        @endforelse
+        {{ $ideas->withQueryString()->links() }}
+    </div>
+
+    <hr id="smallScreenHr">
+
     </div>
 </div>

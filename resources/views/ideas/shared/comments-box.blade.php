@@ -1,38 +1,21 @@
-<div>
-    @auth
-        <form action=" {{ route('ideas.comments.store', $idea->id) }} " method="post">
-            @csrf
-            <div class="mb-3">
-                <textarea name="comment_content" class="fs-6 form-control" rows="1"></textarea>
-            </div>
-            @error('comment_content')
-                <span>{{ $message }}</span>
-            @enderror
-            <div>
-                <button class="btn btn-primary btn-sm" type="submit"> Post Comment </button>
-
-            </div>
-        </form>
-    @endauth
-
-    <hr>
+<div class="underComments">
     @forelse ($idea->comments->sortByDesc('created_at') as $comment)
-        <div class="d-flex align-items-start">
-            <img style="width:35px" class="me-2 avatar-sm rounded-circle" src="{{ $comment->user->getImageURL() }}"
-                alt="{{ $comment->user->name }} Avatar">
-            <div class="w-100">
-                <div class="d-flex justify-content-between">
-                    <h6 class="">{{ $comment->user->name }}
-                    </h6>
-                    <small class="fs-6 fw-light text-muted"> {{ $comment->created_at->diffForHumans() }} </small>
+        <div class="post">
+            <div class="postInfo">
+                <div class="postPicture" style="background-image: url('{{ $comment->user->getImageURL() }}')"></div>
+                <div class="postData">
+                    <span class="birthName"><a href="{{ route('users.show', $comment->user->id) }}">{{ $comment->user->name }}</a></span>
+                    <span class="time">{{ $comment->created_at->diffForHumans() }}</span>
                 </div>
-                <p class="fs-6 mt-3 fw-light">
-                    {{ $comment->content }}
-                </p>
             </div>
         </div>
+        <div class="postText">
+            {{ $comment->content }}
+        </div>
+    </div>  
     @empty
-        <p class="text-center mt-4">This post doesn't have any comments.</p>
+        <p class="text-center mt-4">
+            This post doesn't have any comments
+        </p>
     @endforelse
-
 </div>

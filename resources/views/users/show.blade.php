@@ -1,32 +1,20 @@
-@extends('shared.app')
+@extends('shared.layout')
 
-@section('title', $user->name)
+@section('title', 'Profile')
 
 @section('content')
-    <div class="row">
-        <div class="col-3">
-            @include('shared.left-sidebar')
-        </div>
-        <div class="col-6">
-            <div class="mt-3">
-                @include('shared.success-message')
-                @include('users.shared.user-card')
-            </div>
-            <hr>
-            @forelse ($ideas as $idea)
-                <div class="mt-3">
-                    @include('ideas.shared.idea-card')
-                </div>
-            @empty
-                <p class="text-center mt-4">No results found.</p>
-            @endforelse
-            <div class="mt-2">
-                {{ $ideas->withQueryString()->links() }}
-            </div>
-        </div>
-        <div class="col-3">
-            @include('shared.search-bar')
-            @include('shared.follow-box')
+    <div id="SearchDiv">
+        <div class="navSearchBar">
+            <input placeholder="Search..." class="input" name="text" type="text">
+            <button class="button">
+                <img src="{{ asset('imgs/black/search.svg') }}" alt="Search" class="theme-icon">
+            </button>
+        </div> 
+    </div>  
+    <div class="main">
+        <div class="main-container">
+            @include('shared.right-sidebar')
+            @include('users.shared.user-card')
         </div>
     </div>
 @endsection

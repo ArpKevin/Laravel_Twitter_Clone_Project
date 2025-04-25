@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    width: 100%;
+    height: 50px;
+    background-color: ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 2;
+    position: relative;
+}
+
+body {
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    width: 100%;
+    height: 100%;
+}
+
+.formDiv {
+    height: 100%;
+    min-height: 94vh;
+}
+
+.formDiv form{
+    background-color: rgb(226, 226, 226);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 0px 20px 0px;
+    width: 90%;
+    max-width: 376px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 1px 0 5px rgba(0, 0, 0, 0.13);
+}
+
+.formDiv form span {
+    margin: 5px auto 0px 5%;
+}
+
+input[type=text], input[type=email], input[type=password]{
+    outline: none;
+    width: 90%;
+    height: 2.8rem;
+    border-radius: 5px;
+    border: 1px solid #E2E2E2;
+    padding: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+    border: 1px solid rgb(155, 155, 155);
+}
+
+.formDiv {
+    z-index: 1;
+    background-color: #f0f0f0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formDiv input[type=button], .formDiv input[type=submit] {
+    padding: 7px;
+    width: 30%;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1);
+    border: none;
+    background-color: rgba(241, 241, 241, 0.849);
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+#login, #register {
+    cursor: pointer;
+    font-size: 14px;
+    font-style: italic;
+    transform: skewX(10deg);
+}
+
+a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* https://uiverse.io/Yaya12085/evil-chipmunk-15 */
+
+.password-container,
+.password-confirmation-container {
+    position: relative;
+    display: flex;
+    height: 2.8rem;
+    width: 90%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
+}
+  
+.password-container input,
+.password-confirmation-container input {
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    background-color: transparent;
+    padding: 0.625rem 70px 0.625rem 0.75rem;
+    font-size: 1.35rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    outline: none;
+    transition: all .15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+  
+.password-container input:focus,
+.password-confirmation-container input:focus {
+    border: 1px solid rgb(155, 155, 155);
+}
+  
+.password-btn,
+.password-confirmation-btn {
+    position: absolute;
+    width: 65px;
+    right: 4px;
+    top: 4px;
+    bottom: 4px;
+    z-index: 10;
+    border-radius: 4px;
+    background-color: rgb(216, 216, 216);
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    transition: .6s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+.header {
+    font-size: 23px;
+}

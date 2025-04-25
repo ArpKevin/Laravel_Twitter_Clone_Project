@@ -1,0 +1,113 @@
+body {
+  color: rgb(192, 192, 192);
+}
+
+nav {
+  background-color: #1d1d1d;
+}
+
+.main {
+  background-color: #191919;
+}
+
+.main-container {
+  background-color: #1d1d1d;
+}
+
+.post {
+  background-color: #191919;
+}
+
+.feedDiv {
+  background-color: #191919;
+}
+
+.feedDiv button {
+  background-color: #3f3f3f;
+}
+
+.userFeed {
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.feedPicture {
+  border: 2px solid rgb(192, 192, 192);
+}
+
+.profilePicture {
+  border: 7px solid #1d1d1d;
+}
+
+.userFeed hr {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.user button {
+  color: rgb(192, 192, 192);
+}
+
+.post {
+  background-color: #191919;
+}
+
+.postPicture {
+  border: 2px solid rgb(192, 192, 192)
+}
+
+.searchDiv.active {
+  background-color: #1d1d1d;
+}
+
+@media screen and (max-width: 1160px) {
+  .insideProfilePicture {
+    border: 5px solid #1d1d1d;
+  }
+  #smallScreenHr {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .searchBar.active {
+    display: flex;
+    background-color: #1d1d1d;
+  }
+
+  .searchBar input {
+    background-color: #505050;
+  }
+  
+  .searchDiv button {
+    background-color: #575757;
+  }
+
+}
+
+
+#SearchDiv {
+  background-color: #1d1d1d;
+}
+
+.searchBar input,
+.navSearchBar input {
+  color: rgb(192, 192, 192) !important;
+  background-color: rgb(24, 24, 24);
+}
+
+.searchBar input::placeholder,
+.navSearchBar input::placeholder {
+  color: rgb(192, 192, 192) !important;
+  background-color: rgb(24, 24, 24);
+}
+
+.searchBar button,
+.navSearchBar button {
+  background-color: #575757;
+}
+
+#SearchDiv.active input {
+  background-color: rgb(24, 24, 24);
+  color: rgb(192, 192, 192);
+}
+
+#SearchDiv button {
+  background-color: #575757;
+}

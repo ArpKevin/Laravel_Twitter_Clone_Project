@@ -1,0 +1,778 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/*Az oldal "kiresetelése", alapból minden az oldal szélén lesz padding, illetve margin nélkül*/
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+/* From Uiverse.io by Tsiangana */ 
+.ui-bookmark {
+  --icon-size: 24px;
+  --icon-secondary-color: rgb(192, 192, 192);
+  --icon-hover-color: rgb(110, 110, 110);
+  --icon-primary-color: rgb(241, 115, 0);
+  --icon-circle-border: 1px solid var(--icon-primary-color);
+  --icon-circle-size: 35px;
+  --icon-anmt-duration: 0.3s;
+}
+
+.ui-bookmark input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+.ui-bookmark .bookmark {
+  width: var(--icon-size);
+  height: auto;
+  fill: var(--icon-secondary-color);
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-transform-origin: top;
+  -ms-transform-origin: top;
+  transform-origin: top;
+}
+
+.bookmark::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  -webkit-box-shadow: 0 30px 0 -4px var(--icon-primary-color),
+    30px 0 0 -4px var(--icon-primary-color),
+    0 -30px 0 -4px var(--icon-primary-color),
+    -30px 0 0 -4px var(--icon-primary-color),
+    -22px 22px 0 -4px var(--icon-primary-color),
+    -22px -22px 0 -4px var(--icon-primary-color),
+    22px -22px 0 -4px var(--icon-primary-color),
+    22px 22px 0 -4px var(--icon-primary-color);
+  box-shadow: 0 30px 0 -4px var(--icon-primary-color),
+    30px 0 0 -4px var(--icon-primary-color),
+    0 -30px 0 -4px var(--icon-primary-color),
+    -30px 0 0 -4px var(--icon-primary-color),
+    -22px 22px 0 -4px var(--icon-primary-color),
+    -22px -22px 0 -4px var(--icon-primary-color),
+    22px -22px 0 -4px var(--icon-primary-color),
+    22px 22px 0 -4px var(--icon-primary-color);
+  border-radius: 50%;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  padding: 1px;
+}
+
+.bookmark::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: var(--icon-circle-border);
+  opacity: 0;
+}
+
+/* actions */
+
+.ui-bookmark:hover .bookmark {
+  fill: var(--icon-hover-color);
+}
+
+.ui-bookmark input:checked + .bookmark::after {
+  -webkit-animation: circles var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circles var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  -webkit-animation-delay: var(--icon-anmt-duration);
+  animation-delay: var(--icon-anmt-duration);
+}
+
+.ui-bookmark input:checked + .bookmark {
+  fill: var(--icon-primary-color);
+  -webkit-animation: bookmark var(--icon-anmt-duration) forwards;
+  animation: bookmark var(--icon-anmt-duration) forwards;
+  -webkit-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+.ui-bookmark input:checked + .bookmark::before {
+  -webkit-animation: circle var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circle var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  -webkit-animation-delay: var(--icon-anmt-duration);
+  animation-delay: var(--icon-anmt-duration);
+}
+
+@-webkit-keyframes bookmark {
+  50% {
+    -webkit-transform: scaleY(0.6);
+    transform: scaleY(0.6);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+
+@keyframes bookmark {
+  50% {
+    -webkit-transform: scaleY(0.6);
+    transform: scaleY(0.6);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+
+@-webkit-keyframes circle {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  90% {
+    width: var(--icon-circle-size);
+    height: var(--icon-circle-size);
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes circle {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  90% {
+    width: var(--icon-circle-size);
+    height: var(--icon-circle-size);
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes circles {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes circles {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+body {
+  height: 100%;
+  background-color: #f0f0f0;
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+      "wdth" 100;
+  color: rgb(192, 192, 192);
+  transition: background-color 0.3s ease, color 0.3s ease, grid-template-columns 0.3s ease;
+}
+
+.main-container {
+  height: auto;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 50px;
+  background-color: #1d1d1d;
+  box-shadow: 10px 0 15px rgba(0, 0, 0, 0.1) !important;
+  z-index: 1;
+}
+
+nav.search-active {
+  box-shadow: none !important;
+}
+
+nav .left-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.link-size {
+  width: 50px;
+  height: 50px;
+}
+
+.main {
+  grid-area: main;
+  background-color: #191919;
+  transition: background-color 0.3s ease;
+  padding: 20px 0px 20px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  width: 100%;
+}
+
+.left-icons .material-symbols-outlined {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  transition: background-color 0.5s ease, color 0.3s ease;
+  overflow: hidden;
+}
+
+.left-icons .material-symbols-outlined:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 50px;
+  cursor: pointer;
+}
+
+.userPosts {
+  background-color: #1d1d1d;
+  padding: 20px;
+  overflow-y: auto;
+  transition: background-color 0.3s ease;
+  overflow: hidden;
+  grid-row: 1/6;
+  grid-column: 1/2;
+}
+
+.userFeed  {
+  grid-row: 1/6;
+  grid-column: 2/3;
+  background-color: rgb(226, 226, 226);
+  transition: background-color 0.3s ease;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.Content {
+  grid-row: 2/3;
+  margin-top: 10px;
+  margin-left: 70px;
+  text-align: justify;
+}
+
+.userPostInfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+  height: 65px;
+}
+
+.profilePicture {
+  border-radius: 100%;
+  overflow: hidden; /* A divből való "kifolyás" letiltása */
+  border: 2px solid black;
+  width: 65px; 
+  height: 65px; 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
+
+.head {
+display: flex; 
+flex-wrap: wrap; 
+flex-direction: column;
+}
+
+.userPostInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.userPostInfo span {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: black;
+}
+
+.more-icon {
+margin-left: auto;
+cursor: pointer;
+padding: 5px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: background-color 0.2s;
+}
+
+.more-icon:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.more-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.postText {
+  margin: 15px 0;
+  line-height: 1.5;
+  font-size: 0.95em;
+  text-align: justify;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mainComment .text {
+  margin-top: 15px; 
+  text-align: justify;
+  line-height: 1.5;
+  font-size: 0.95em;
+}
+
+.information {
+  text-align: justify;
+  align-items: center;
+  display: flex; 
+  flex-wrap: nowrap; 
+  flex-direction: row; 
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.likeInformation {
+  display: flex; 
+  align-items: center; 
+  gap: 5px;
+}
+
+.commentInformation {
+  display: flex; 
+  align-items: center; 
+  gap: 5px;
+}
+
+.userPosts hr {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2); 
+  height: 1px; 
+  width: 100%;
+  margin: 20px 0px 20px 0px;
+}
+
+.hours {
+  float: right;
+  margin-right: 2%;
+  margin-top: 3px;
+}
+
+.underComments .post {
+  margin: 20px 2% 20px 2%;
+}
+
+.underComments .post .profilePicture {
+  border-radius: 100%;
+  overflow: hidden; /* A divből való "kifolyás" letiltása */
+  border: 2px solid black;
+  width: 50px; 
+  height: 50px; 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
+
+.underComments .post .username {
+  display: flex; 
+  flex-wrap: wrap; 
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px
+}
+
+.underComments .post .text {
+  margin: 15px 0;
+  line-height: 1.5;
+  color: black;
+  font-size: 0.95em;
+  text-align: justify;
+}
+
+.time {
+  margin-top: 5px;
+}
+
+.underComments hr {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.2); 
+  height: 1px; 
+  width: calc(100% - 4%); /* Adjust width to account for margins */
+  margin: 20px 2% 0 2%;
+}
+
+.userFeed  {
+  grid-row: 1/6;
+  grid-column: 2/3;
+  background-color: #1d1d1d;
+  transition: background-color 0.3s ease;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.main-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 840px minmax(240px, auto);
+
+}
+
+/* From Uiverse.io by deepak16375 */ 
+.searchBar {
+  display: flex;
+  justify-content: center;
+  height: 35px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input {
+  font-size: 17px;
+  color: rgb(192, 192, 192);
+  border: none;
+  border-top-left-radius: .5em;
+  border-bottom-left-radius: .5em;
+  padding: 8px;
+  box-sizing: border-box;
+  width: calc(100% - 50px);
+  background-color: #3f3f3f;
+  color: rgb(192, 192, 192)
+}
+
+.button {
+  border: none;
+  text-decoration: none;
+  padding: 8px 15px;
+  font-size: 17px;
+  border-top-right-radius: .5em;
+  border-bottom-right-radius: .5em;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 50px;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  outline: none;
+  background-color: #474747;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.recentSpan {
+  margin-top: 20px;
+}
+
+.searchIcon {
+  display: none;
+}
+
+#SearchDiv {
+    display: none;
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 10px 15px 0 15px rgba(0, 0, 0, 0.1) !important;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    color: rgb(192, 192, 192)
+}
+
+#SearchDiv.active {
+    display: flex;
+    background-color: #1d1d1d;
+    color: rgb(192, 192, 192)
+}
+
+#SearchDiv.active input {
+  display: flex;
+  color: rgb(192, 192, 192)
+}
+
+.navSearchBar::placeholder {
+  color: rgb(192, 192, 192) !important
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 1160px) {
+  body {
+    width: 100%;
+    background-color: #f0f0f0;
+  }
+  .main {
+    padding: 15px;
+    height: 100%;
+    min-height: 100vh;
+  }
+  .main-container {
+    display: grid;
+    grid-template-columns: auto;
+  }
+  #navSpan {
+    display: none;
+  }
+  nav {
+    width: 100%;
+  }
+  nav .left-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .userFeed {
+    display: none;
+  }
+  .main-container {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+  }
+  .userPosts {
+    width: 100%;
+    height: 100%;
+  }
+  .postText {
+    text-align: justify;
+  }
+
+  .SearchDiv {
+    display: none;
+    justify-content: center;
+    padding: 5px;
+    z-index: 2;
+  }
+
+  .SearchDiv.active {
+    display: none;
+  }
+
+  ::placeholder {
+    color: rgb(192, 192, 192);
+  }
+
+  .navSearchBar {
+    display: flex;
+    justify-content: center;
+    height: 35px;
+    width: 300px; /* Ensure it takes the full width of its container */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+  }
+  
+  .navSearchBar .input {
+    font-size: 17px;
+    color: black;
+    border: none;
+    border-top-left-radius: .5em;
+    border-bottom-left-radius: .5em;
+    padding: 8px; /* Add padding for better spacing */
+    box-sizing: border-box; /* Include padding in the element's total width */
+    width: calc(100% - 50px); /* Adjust width to account for the button */
+  }
+  
+  .navSearchBar .button {
+    border: none;
+    text-decoration: none;
+    padding: 8px 15px; /* Adjust padding for better spacing */
+    font-size: 17px;
+    color: black;
+    border-top-right-radius: .5em;
+    border-bottom-right-radius: .5em;
+    cursor: pointer;
+    box-sizing: border-box; /* Include padding in the element's total width */
+    width: 50px; /* Fixed width for the button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(175, 175, 175, 0.4);
+  }
+  .userPostInfo {
+    gap: 5px;
+  }
+  .information {
+    gap: 5px;
+  }
+}
+
+@media screen and (max-width: 1160px) {
+    .searchIcon {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1161px) {
+    .searchIcon {
+        display: none;
+    }
+    #SearchDiv {
+      display: none;
+      visibility: collapse;
+      margin: 0;
+      padding: 0;
+    }
+    .navSearchBar {
+      display: none;
+    }
+}
+
+.postInfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+  height: 65px;
+}
+
+.postPicture {
+  border-radius: 100%;
+  overflow: hidden;
+  width: 65px; 
+  height: 65px; 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  border: 2px solid rgb(192, 192, 192);
+}
+
+.postData {
+  display: flex; 
+  flex-direction: column; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 2px; 
+  flex-grow: 1;
+}
+
+.postData .username {
+  font-size: 15px;
+}
+
+.postText {
+  margin: 15px 0;
+  line-height: 1.5;
+  font-size: 0.95em;
+  text-align: justify;
+}
+
+.postInformation button {
+  border: 0;
+  background-color: rgb(192, 192, 192);
+  padding: 7px;
+  border-radius: 15px;
+}
+
+.comments-toggle {
+  all: unset;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+}
+
+.postInformation {
+  margin-top: 15px; 
+  text-align: justify; 
+  display: flex; 
+  flex-wrap: nowrap; 
+  flex-direction: row; 
+  gap: 10px;
+}
+
+.likeInformation {
+  display: flex; 
+  align-items: center; 
+  margin-left: auto;
+  gap: 5px;
+}
+
+.mainHr {
+  border: 0;
+  height: 1px;
+  background-color: rgba(0, 0, 0,0.5);
+}

@@ -1,0 +1,75 @@
+body {
+  color: black;
+}
+
+nav {
+  color: white;
+}
+
+.main {
+  background-color: #f0f0f0;
+}
+
+.main-container {
+  background-color: rgb(226, 226, 226);
+}
+
+.post {
+  background-color: rgb(211, 211, 211);
+}
+
+.feedDiv {
+  background-color: rgb(211, 211, 211);
+}
+
+.userFeed {
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.feedPicture {
+  border: 2px solid black;
+}
+
+.profilePicture {
+  border: 7px solid #E2E2E2;
+}
+
+.userFeed hr {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.user button {
+  color: black;
+  background-color: #E2E2E2;
+}
+.post {
+  background-color: rgb(211, 211, 211);
+}
+
+.postPicture {
+  border: 2px solid black;
+}
+
+@media screen and (max-width: 1160px) {
+  .insideProfilePicture {
+    border: 5px solid rgb(226, 226, 226);
+  }
+  #smallScreenHr {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+
+@media screen and (min-width: 1161px) {
+  #navSpan {
+      color: black;
+  }
+}
+
+#SearchDiv.active input {
+background-color: #f0f0f0;
+}
+
+#SearchDiv button {
+  background-color: rgb(226, 226, 226);
+}

@@ -1,0 +1,939 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    transition: background-color 0.3s ease, color 0.3s ease, grid-template-columns 0.3s ease;
+}
+
+input[type=text]{
+    background-image: url();
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+}
+
+#largeScreenHr {
+    height: 1px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 50px;
+    z-index: 1;
+}
+
+nav.search-active {
+    box-shadow: none !important;
+}
+
+nav .nav-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-icons .material-symbols-outlined {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.nav-icons .material-symbols-outlined:hover {
+    width: 50px;
+    cursor: pointer;
+}
+
+.link-size {
+    width: 50px;
+    height: 50px;
+}
+  
+.main {
+    background-color: #f0f0f0;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.main-container {
+    background-color: rgb(226, 226, 226);
+    height: 100%;
+    min-height: 100vh;
+}
+
+.posts {
+    grid-row: 1/6;
+    grid-column: 1/2;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+    overflow: hidden;
+}
+
+.post {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease; 
+}
+
+.userFeed  {
+    grid-row: 1/6;
+    grid-column: 2/3;
+    transition: background-color 0.3s ease;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.Content {
+    grid-row: 2/3;
+    margin-top: 10px;
+    margin-left: 70px;
+    text-align: justify;
+}
+
+.userPostInfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 5px;
+    height: 65px;
+}
+
+.feedDiv {
+    background-color: rgb(211, 211, 211);
+}
+
+
+.feedDiv button {
+    border: none;
+    padding: 7px;
+    width: 25%;
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-size: 14px;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    margin-left: auto;
+}
+
+.userFeed .user {
+    display: flex; 
+    gap: 5px; 
+    align-items: center; 
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #666;
+}
+
+.postPfp {
+    border-radius: 100%;
+    overflow: hidden; /* A divből való "kifolyás" letiltása */
+    border: 2px solid black;
+    width: 65px; 
+    height: 65px; 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
+
+.postUsername {
+    display: flex; 
+    flex-wrap: wrap; 
+    flex-direction: column; 
+    gap: 5px;
+}
+
+.userPostInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.userPostInfo span {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: black;
+}
+
+.comments-toggle {
+    all: unset;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.searchBar {
+    display: flex;
+    justify-content: center;
+    height: 35px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input {
+    font-size: 17px;
+    color: black;
+    border: none;
+    border-top-left-radius: .5em;
+    border-bottom-left-radius: .5em;
+    padding: 8px;
+    box-sizing: border-box;
+    width: calc(100% - 50px);
+}
+
+.button {
+    border: none;
+    text-decoration: none;
+    padding: 8px 15px;
+    font-size: 17px;
+    color: black;
+    border-top-right-radius: .5em;
+    border-bottom-right-radius: .5em;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 50px;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.userDiv {
+    grid-column: 1/2;
+    padding: 20px;
+}
+
+.userProfile {
+    display: grid;
+    grid-template-columns: repeat(8, 100px);
+    grid-template-rows: repeat(3, 100px);
+    grid-column: 1/2;
+}
+
+.userFeed {
+    grid-column: 2/3;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.feedPicture {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.backgroundImage {
+    z-index: 1;
+    grid-row: 1/3;
+    grid-column: 1/9;
+    background-color: rgb(128, 128, 128);
+}
+
+.profilePicture {
+    z-index: 2;
+    grid-row: 2/4;
+    grid-column: 4/6;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.leftInformation {
+    grid-row: 3/4;
+    grid-column: 1/4;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.rightInformation {
+    grid-row: 3/4;
+    grid-column: 6/9;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.middleInformation {
+    grid-row: 4/5;
+    grid-column: 4/6;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.profileButtons {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#profileEdit, #profileFollow {
+    border: 0;
+    background-color: rgb(192, 192, 192);
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 15px;
+    margin: 5px;
+    font-size: 22px;
+}
+
+#followButton {
+    border: 0;
+    background-color: rgb(192, 192, 192);
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.userFeed hr {
+    height: 1px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: calc(100% + 40px); 
+    margin: 20px -20px;
+}
+
+.rightSideDiv hr {
+    all: unset; 
+    background-color: rgba(0, 0, 0, 0.05); 
+    width: calc(100% + 40px); 
+    height: 1px; 
+    margin: 20px -20px;
+}
+
+.recommendationDivs {
+    display: flex; 
+    align-items: center; 
+    background-color: rgb(211, 211, 211); 
+    padding: 10px; 
+    border-radius: 5px; 
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1); 
+    display: flex; 
+    flex-wrap: wrap; 
+    flex-direction: column;
+}
+
+.recommendedUser {
+    display: flex; 
+    flex-direction: row;
+    gap: 5px; 
+    align-items: center; 
+    width: 100%;
+}
+
+.userProfilePicture {
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%;
+    overflow: hidden; /* A divből való "kifolyás" blokkolása */
+    border: 2px solid black;
+}
+
+.recommendedUser button {
+    all: unset; 
+    padding: 6px 12px; 
+    border-radius: 6px; cursor: pointer; 
+    background-color: rgb(226, 226, 226); 
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    margin-left: 10px;
+}
+
+.recommendedUser span {
+font-size: 15px;
+}
+
+    .userFeed .header {
+    margin-left: auto; 
+    margin-right: auto; 
+    font-size: 20px; 
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.searchBar button {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.Head {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.userPostInfo .profilePicture {
+    width: 65px; 
+    height: 65px; 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    border-radius: 100%;
+    overflow: hidden; /* A divből való "kifolyás" blokkolása */
+    border: 2px solid black;
+}
+
+.usernames {
+    display: flex; 
+    flex-direction: column; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 2px; 
+    flex-grow: 1;
+}
+
+.usernames .username {
+    font-size: 15px;
+}
+
+.leftInformation img {
+    width: 45px; 
+    height: 45px;
+}
+
+.rightInformation img {
+    height: 45px;
+    width: 45px;
+}
+
+
+.informationCenter {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+#birthName {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.userProfile hr {
+    border: none;
+    background-color: rgba(0, 0, 0, 0.05); 
+    height: 1px; 
+    width: 100%; 
+    margin-top: auto; 
+    margin-bottom: auto;
+    grid-row: 4/5; 
+    grid-column: 1/9; 
+    transform: translateY(20px);
+}
+
+.Post .text {
+    margin-top: 15px; 
+    text-align: justify;
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+.postInformation {
+    margin-top: 15px; 
+    text-align: justify; 
+    display: flex; 
+    flex-wrap: nowrap; 
+    flex-direction: row; 
+    align-items: center;
+}
+
+.likeInformation {
+    display: flex; 
+    align-items: center; 
+    gap: 5px;
+    margin-left: auto;
+}
+
+.commentInformation {
+    display: flex; 
+    align-items: center; 
+    gap: 5px;
+}
+
+.commentInformation img {
+    width: 25px;
+    height: 25px;
+}
+
+.userProgress {
+    height: 100%; 
+    background-color: rgb(145, 145, 145); 
+    border-radius: 50px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: white;
+}
+
+.progressBar {
+    width: 100%; 
+    height: 27px; 
+    background-color: rgb(65, 65, 65); 
+    border-radius: 50px;
+    padding: 5px;
+}
+
+.user button {
+    border: none;
+    padding: 7px;
+    width: 25%;
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-size: 14px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.user button {
+    border: none;
+    padding: 7px;
+    width: 25%;
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-size: 14px;
+    box-shadow: 2px 2px 5px 1px rgba(255, 255, 255, 0.1); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.user {
+    display: flex; 
+    gap: 5px; 
+    align-items: center; 
+    width: 100%;
+}
+
+.recentPostPfp { 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.Recommended {
+    display: flex; 
+    align-items: center; 
+    background-color: rgb(211, 211, 211); 
+    padding: 10px; 
+    border-radius: 5px; 
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1); 
+    display: flex; 
+    flex-wrap: wrap; 
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.text-editor {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #c4c4c4;
+}
+
+.toolbar {
+    padding: 5px;
+    background: #ffffff;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    gap: 5px;
+}
+
+.format-btn {
+    padding: 3px 8px;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.format-btn:hover {
+    background: #eee;
+}
+
+.font-size {
+    padding: 3px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.editor-content {
+    min-height: 24px; /* Single line height */
+    overflow-y: auto;
+    padding: 10px;
+    outline: none;
+    max-height: 55px;
+    display: block;
+}
+
+.recentSpan {
+    margin-top: 20px;
+}
+
+.searchIcon {
+    display: none;
+}
+
+.user button {
+    box-shadow: none;
+}
+  
+.post {
+    background-color: rgb(211, 211, 211);
+}
+
+.postInfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 5px;
+    height: 65px;
+}
+
+.postPicture {
+    border-radius: 100%;
+    overflow: hidden; /* A divből való "kifolyás" letiltása */
+    width: 65px; 
+    height: 65px; 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+
+
+.postData {
+    display: flex; 
+    flex-direction: column; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 2px; 
+    flex-grow: 1;
+}
+
+.postData .username {
+    font-size: 15px;
+}
+
+.postText {
+    margin: 15px 0;
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+#SearchDiv {
+    display: none;
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 10px 15px 0 15px rgba(0, 0, 0, 0.1) !important;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#SearchDiv.active {
+    display: flex;
+}
+
+@media screen and (max-width: 1160px) {
+    .main {
+      padding-top: 15px;
+      height: 100%;
+      padding: 10px;
+    }
+  
+    .main-container {
+      display: grid;
+      grid-template-columns: auto;
+      width: 100%;
+      padding: 15px;
+      max-width: 736px;
+    }
+  
+    .profileInformation {
+      display: grid;
+      grid-template-columns: auto;
+      height: 100%;
+      width: 90%;
+    }
+  
+    .leftInformation {
+      display: none;
+    }
+  
+    .rightInformation {
+      display: none;
+    }
+    .userProfile {
+      display: flex;
+      width: 100%;
+      margin-bottom: 30px;
+      justify-content: center;
+    }
+    .backgroundImage {
+      width: 100%;
+      height: 130px;
+      max-width: 736px;
+    }
+    .Post {
+      display: none;
+    }
+    .userStatistics {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .userDiv {
+      width: 100%;
+      padding: 0px;
+    }
+    .profilePicture {
+      display: none;
+    }
+    .insideProfilePicture {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 130px;
+      height: 130px;
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      transform: translateY(50%);
+      border-radius: 50%;
+    }
+    .backgroundImage {
+      margin-bottom: 50px;
+    }
+    #largeScreenHr {
+      display: none;
+    }
+    #smallScreenHr {
+      border: none;
+      margin-left: auto;
+      margin-right: auto;
+      height: 1px;
+      max-width: 736px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+    #navSpan {
+      display: none;
+    }
+  
+    nav {
+      width: 100%;
+      box-shadow: none;
+    }
+  
+    nav .nav-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0px;
+    }
+  
+    .userFeed {
+      display: none !important;
+      visibility: hidden !important;
+      padding: 0 !important;
+    }
+  
+    .userPostInfo {
+      gap: 5px;
+    }
+  
+    .postText {
+      text-align: justify;
+    }
+  
+    .SearchDiv {
+      display: none;
+      justify-content: center;
+      padding: 5px;
+      z-index: 2;
+    }
+  
+    .SearchDiv.active {
+      display: none;
+    }
+  
+    ::placeholder {
+      color: black;
+    }
+  
+    .navSearchBar {
+      display: flex;
+      justify-content: center;
+      height: 35px;
+      box-sizing: border-box; /* Include padding and border in the element's total width */
+    }
+    
+    .navSearchBar .input {
+      font-size: 17px;
+      border: none;
+      border-top-left-radius: .5em;
+      border-bottom-left-radius: .5em;
+      padding: 8px; /* Add padding for better spacing */
+      box-sizing: border-box; /* Include padding in the element's total width */
+      width: calc(100% - 50px); /* Adjust width to account for the button */
+    }
+    
+    .navSearchBar .button {
+      border: none;
+      text-decoration: none;
+      padding: 8px 15px; /* Adjust padding for better spacing */
+      font-size: 17px;
+      border-top-right-radius: .5em;
+      border-bottom-right-radius: .5em;
+      cursor: pointer;
+      box-sizing: border-box; /* Include padding in the element's total width */
+      width: 50px; /* Fixed width for the button */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    a {
+      text-decoration: none;
+      color: #666;
+    }
+  
+    .userStatistics {
+      gap: 5px;
+    }
+  
+    .smalltoDoList {
+      display: flex; 
+      justify-content: center;
+    }
+
+    .mobileFeed {
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    
+    .mobileFeed .feedDiv {
+        margin-top: 10px;
+        width: 90%;
+        max-width: 367px;
+    }
+
+  }
+  
+  @media screen and (max-width: 1160px) {
+    .searchIcon {
+        display: block;
+    }
+  }
+  
+  @media screen and (min-width: 1161px) {
+    .searchIcon {
+        display: none;
+    }
+    #SearchDiv {
+      display: none;
+      visibility: collapse;
+      margin: 0;
+      padding: 0;
+    }
+    .navSearchBar {
+      display: none;
+    }
+    .middleInformation {
+      display: none;
+    }
+    .insideProfilePicture {
+      display: none;
+    }
+    #smallScreenHr {
+      display: none;
+    }
+    .smalltoDoList {
+      display: none;
+      visibility: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    #navSpan {
+        display: block;
+    }
+    .mobileFeed {
+        display: none;
+    }
+  }
+  
+  .editPost {
+    display: none;
+  }

@@ -1,0 +1,131 @@
+/* From Uiverse.io by Tsiangana */ 
+.ui-bookmark {
+  --icon-secondary-color: rgb(192, 192, 192);
+}
+  
+input[type=text]{
+  background-color: rgb(24, 24, 24);
+}
+
+body {
+  color: rgb(192, 192, 192);
+}
+
+nav {
+  background-color: #1d1d1d;
+  box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main {
+  background-color: #191919;
+}
+
+.nav-icons .material-symbols-outlined:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}  
+
+.posts {
+  background-color: #1d1d1d;
+}
+
+.post {
+  background-color: #191919;
+}
+
+.userFeed  {
+  background-color: #1d1d1d;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.postPicture {
+  border: 2px solid white;
+}
+
+/* From Uiverse.io by deepak16375 */ 
+
+.userFeed hr {
+  background-color: rgba(255, 255, 255, 0.05); 
+}
+
+.rightSideDiv hr {
+  background-color: rgba(255, 255, 255, 0.05); 
+}
+
+.recommendationDivs {
+  background-color: #191919; 
+}
+
+.userProfilePicture {
+  border: 2px solid rgb(192, 192, 192);
+}
+
+.feedDiv {
+  background-color: #191919; 
+}
+
+.feedDiv button {
+  background-color: #3f3f3f; 
+  color: rgb(192, 192, 192);
+}
+
+.feedPicture {
+  border: 2px solid rgb(255, 255, 255);
+}
+
+.searchBar input,
+.navSearchBar input {
+  color: rgb(192, 192, 192) !important;
+  background-color: rgb(24, 24, 24);
+}
+
+.searchBar input::placeholder{
+  color: rgb(192, 192, 192) !important;
+  background-color: rgb(24, 24, 24);
+}
+
+.mobileFeed .navSearchBar ::placeholder {
+  color: rgb(192, 192, 192);
+}
+
+.searchBar button, .navSearchBar button {
+  background-color: #575757;
+}
+
+@media screen and (max-width: 1160px) {
+
+  #SearchDiv {
+      background-color: #1d1d1d;
+      color: rgb(192, 192, 192)
+  }
+
+  #SearchDiv.active input {
+      background-color: rgb(40, 40, 40);
+      color: rgb(192, 192, 192);
+  }
+
+  #SearchDiv input::placeholder {
+      color: rgb(192, 192, 192);
+  }
+
+  .post {
+      background-color: #1d1d1d;
+  }
+
+  .posts {
+    background-color: white;
+  }
+
+  .navSearchBar .input {
+      color: black;
+      background-color: rgb(200, 200, 200, 0.3);
+  }
+
+  .navSearchBar .button {
+      color: black;
+      background-color: rgba(175, 175, 175, 0.4);
+  }
+}
+
+.mobileFeed {
+  background-color: #1d1d1d;
+}

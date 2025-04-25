@@ -1,0 +1,113 @@
+/* From Uiverse.io by Tsiangana */ 
+.ui-bookmark {
+  --icon-secondary-color: rgb(0, 0, 0);
+}
+  
+input[type=text]{
+  background-color: white;
+}
+
+body {
+  color: rgb(0, 0, 0);
+}
+
+nav {
+  background-color: white;
+  box-shadow: 10px 0 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.main {
+  background-color: #f0f0f0;
+}
+
+.mobileFeed {
+  background-color: rgb(226, 226, 226);
+}
+
+.nav-icons .material-symbols-outlined:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.posts {
+  background-color: rgb(226, 226, 226);
+}
+
+.post {
+  background-color: rgb(211, 211, 211);
+}
+
+.userFeed  {
+    background-color: rgb(226, 226, 226);
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.postPicture {
+    border: 2px solid black;
+}
+
+.more-icon:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* From Uiverse.io by deepak16375 */ 
+.searchBar button {
+  background-color: rgb(240, 240, 240);
+}
+
+.userFeed {
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.userFeed hr {
+  background-color: rgba(0, 0, 0, 0.05); 
+}
+
+.rightSideDiv hr {
+  background-color: rgba(0, 0, 0, 0.05); 
+}
+
+.recommendationDivs {
+  background-color: rgb(211, 211, 211); 
+}
+
+.userProfilePicture {
+  border: 2px solid black;
+}
+
+.feedDiv {
+  background-color: rgb(211, 211, 211); 
+}
+
+.feedDiv button {
+  background-color: #E2E2E2; 
+}
+
+.feedPicture {
+  border: 2px solid black;
+}
+
+@media screen and (max-width: 1160px) {
+  #SearchDiv {
+      display: none;
+      position: relative;
+      width: 100%;
+      padding: 10px;
+      box-shadow: 0 10px 15px 0 15px rgba(0, 0, 0, 0.1) !important;
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .post {
+    background-color: rgb(226, 226, 226);
+    box-shadow: none !important;
+  }
+
+  #SearchDiv input {
+    background-color: #f0f0f0;
+  }
+
+  #SearchDiv button {
+    background-color: rgb(226, 226, 226);
+  }
+}
