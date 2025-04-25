@@ -16,7 +16,7 @@ class ProgressBarComposer
             
             $userPinsCount = $user->pins()->count();
 
-            $progressPercentage = $totalPins > 0 ? ($userPinsCount / $totalPins) * 100 : 5;
+            $progressPercentage = $totalPins > 0 && $userPinsCount > 0 ? ($userPinsCount / $totalPins) * 100 : 5;
 
             $view->with('progressPercentage', $progressPercentage);
             $view->with('totalPins', $totalPins);
