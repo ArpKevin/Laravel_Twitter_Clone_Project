@@ -1,8 +1,9 @@
-<!-- From Uiverse.io by Tsiangana -->
-<label class="ui-bookmark">
-    <input type="checkbox" />
-    <div class="bookmark">
-        @if (auth()->user() !== $idea->user_id)
+@if (auth()->user()->id !== $idea->user->id)
+    <!-- From Uiverse.io by Tsiangana -->
+    <label class="ui-bookmark">
+        <input type="checkbox" />
+        <div class="bookmark">
+
             @if (auth()->user()->likesIdea($idea) && auth()->check())
                 <form action="{{ route('ideas.unlike', $idea->id) }}" method="POST">
                     @csrf
@@ -26,7 +27,8 @@
                     </button>
                 </form>
             @endif
-        @endif
-    </div>
-</label>
-<span>{{ $idea->likes_count }}</span>
+
+        </div>
+    </label>
+    <span>{{ $idea->likes_count }}</span>
+@endif
