@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use App\View\Composers\TopUserComposer;
 use Illuminate\Support\Facades\URL;
+use App\View\Composers\ProgressBarComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,5 +38,6 @@ class AppServiceProvider extends ServiceProvider
         }
 
         View::composer(["*"], TopUserComposer::class);
+        View::composer(["*"], ProgressBarComposer::class);
     }
 }
