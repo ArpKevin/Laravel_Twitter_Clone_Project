@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('loginform-css')
-    <link rel="stylesheet" href="/css/loginform.css">
+    <link rel="stylesheet" href="{{ asset('css/loginform.css') }}">
 @endsection
 
 @section('content')
