@@ -26,7 +26,7 @@ class UpdatePinRequest extends FormRequest
         return [
             'pin_name' => 'required',
             'pin_description' => 'required',
-            'image_link' => 'required',
+            'image_link' => '',
             'latitude' => 'required|numeric|min:48.059131|max:48.086029',
             'longitude' => 'required|numeric|min:19.262767|max:19.311605',
             'pin_category_id' => 'required|exists:pin_categories,id'
