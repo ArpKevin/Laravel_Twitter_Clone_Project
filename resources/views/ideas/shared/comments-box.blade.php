@@ -1,5 +1,5 @@
 <div class="underComments">
-    @forelse ($idea->comments->sortByDesc('created_at') as $comment)
+    @forelse ($comments as $comment)
         <div class="post">
             <div class="postInfo">
                 <div class="postPicture" style="background-image: url('{{ $comment->user->getImageURL() }}')"></div>
@@ -17,4 +17,5 @@
             This post doesn't have any comments
         </p>
     @endforelse
+    {{ $comments->withQueryString()->links() }}
 </div>

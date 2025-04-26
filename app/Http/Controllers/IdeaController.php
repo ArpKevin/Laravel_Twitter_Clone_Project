@@ -19,8 +19,10 @@ class IdeaController extends Controller
 
         return to_route('dashboard')->with('success','Idea was created successfully.');
     }
-    public function show(Idea $idea){
-        return view("ideas.show", compact("idea"));
+    public function show(Idea $idea)
+    {
+        $comments = $idea->comments()->latest()->paginate(5);
+        return view("ideas.show", compact("idea", "comments"));
     }
     public function edit(Idea $idea){
 
