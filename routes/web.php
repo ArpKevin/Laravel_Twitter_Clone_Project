@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PinController;
+use App\Http\Controllers\Admin\PinController as AdminPinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,4 +68,11 @@ Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
 
-Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth'])->can('admin');
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->middleware(['auth'])->can('admin')->name('admin.dashboard');
+    Route::get('/add-pin', [AdminPinController::class, 'create'])->middleware(['auth'])->can('admin')->name('admin.pins.create');
+    Route::post('/add-pin', [AdminPinController::class, 'store'])->middleware(['auth'])->can('admin')->name('admin.pins.store');
+    Route::get('/pins/{pin}/edit', [AdminPinController::class, 'edit'])->middleware(['auth'])->can('admin')->name('admin.pins.edit');
+    Route::put('/pins/{pin}', [AdminPinController::class, 'update'])->middleware(['auth'])->can('admin')->name('admin.pins.update');
+    Route::delete('/pins/{pin}', [AdminPinController::class, 'destroy'])->middleware(['auth'])->can('admin')->name('admin.pins.destroy');
+});

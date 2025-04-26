@@ -10,7 +10,12 @@ class Pin extends Model
     use HasFactory;
 
     protected $fillable = [
-        // "pin_category_id"
+        'pin_name',
+        'pin_description',
+        'image_link',
+        'latitude',
+        'longitude',
+        'pin_category_id'
     ];
 
     public function users()

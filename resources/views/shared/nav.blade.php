@@ -16,5 +16,8 @@
         <span class="material-symbols-outlined" data-tooltip="Dark Mode" onclick="toggleTheme()">
             <img src="{{ asset('imgs/black/theme.svg') }}" alt="Theme Toggle" class="theme-icon">
         </span>
+        @if (auth()->user()->is_admin ?? false)
+            <a href="{{ route('admin.dashboard') }}" class="link-size"><span class="material-symbols-outlined" data-tooltip="Admin"><img src="{{ asset('imgs/black/admin.svg') }}" alt="Admin icon" class="theme-icon"></span></a>
+        @endif
     </div>
 </nav>

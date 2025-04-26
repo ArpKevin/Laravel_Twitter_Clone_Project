@@ -34,7 +34,7 @@ body {
     min-height: 94vh;
 }
 
-.formDiv form{
+.formDiv form, .formDiv select, .formDiv textarea{
     background-color: rgb(226, 226, 226);
     display: flex;
     align-items: center;
@@ -46,6 +46,10 @@ body {
     height: auto;
     border-radius: 5px;
     box-shadow: 1px 0 5px rgba(0, 0, 0, 0.13);
+}
+
+.formDiv select, .formDiv textarea{
+    padding: 0;
 }
 
 .formDiv form span {
