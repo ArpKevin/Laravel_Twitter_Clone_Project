@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('pin_name');
             $table->longText('pin_description')->nullable();
-            $table->string('image_link')->nullable();
+            $table->longText('image_link')->nullable();
             $table->decimal('latitude', 10, 6);
             $table->decimal('longitude', 11, 6);
             $table->foreignId('pin_category_id')->constrained()->cascadeOnDelete();
