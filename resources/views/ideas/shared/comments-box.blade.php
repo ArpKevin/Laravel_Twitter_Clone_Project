@@ -12,8 +12,6 @@
                 {{ $comment->content }}
             </div>
         </div>
-        
-    </div>  
     @empty
         <p class="text-center mt-4">
             This post doesn't have any comments
