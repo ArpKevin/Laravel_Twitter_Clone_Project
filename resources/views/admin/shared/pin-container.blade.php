@@ -7,7 +7,6 @@
                 <th>Pin</th>
                 <th>Category</th>
                 <th>Description</th>
-                <th>Image Link</th>
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>Created At</th>
@@ -21,7 +20,6 @@
                     <td>{{ $pin->pin_name ?? 'N/A' }}</td>
                     <td>{{ $pin->pinCategory->category_name ?? 'N/A' }}</td>
                     <td>{{ $pin->pin_description ?? 'N/A' }}</td>
-                    <td>{{ $pin->image_link ?? 'N/A' }}</td>
                     <td>{{ $pin->latitude ?? 'N/A' }}</td>
                     <td>{{ $pin->longitude ?? 'N/A' }}</td>
                     <td>{{ $pin->created_at ? $pin->created_at->diffForHumans() : 'N/A' }}</td>

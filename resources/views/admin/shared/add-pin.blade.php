@@ -24,7 +24,7 @@
                 <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
             @enderror
             <span>Image Link</span>
-            <input type="text" name="image_link" id="image_link">
+            <textarea name="image_link" id="image_link" rows="4" class="form-control"></textarea>
             @error('image_link')
                 <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
             @enderror
