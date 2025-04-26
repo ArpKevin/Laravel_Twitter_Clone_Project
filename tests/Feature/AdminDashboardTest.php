@@ -8,7 +8,6 @@ use Tests\TestCase;
 
 class AdminDashboardTest extends TestCase
 {
-    use RefreshDatabase;
 
     /** @test */
     public function admin_can_access_admin_dashboard()
@@ -19,6 +18,8 @@ class AdminDashboardTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertViewIs('admin.dashboard');
+
+        $adminUser->delete();
     }
 
     /** @test */
@@ -29,5 +30,7 @@ class AdminDashboardTest extends TestCase
         $response = $this->actingAs($regularUser)->get(route('admin.dashboard'));
 
         $response->assertStatus(403);
+
+        $regularUser->delete();
     }
 }
